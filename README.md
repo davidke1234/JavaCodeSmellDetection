@@ -1,1 +1,1 @@
-# 582Project
+# 582Project CodeSmellDetection
