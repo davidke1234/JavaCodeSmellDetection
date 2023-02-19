@@ -1,12 +1,13 @@
 
 import java.lang.reflect.ParameterizedType;
+
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 import java.lang.reflect.WildcardType;
 import java.util.Collection;
 import java.util.*;
 //import com.puppycrawl.tools.checkstyle.api.*;
-
+//detectors 
  class SpaghettiCodeDetector {
     public static boolean isSpaghettiCode(String code) {
         // Check if the code contains too many nested loops and conditional statements
