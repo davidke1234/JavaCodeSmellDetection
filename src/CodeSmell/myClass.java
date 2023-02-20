@@ -3,7 +3,7 @@ package CodeSmell;
 public class myClass {
 	
 	public String AA(){
-		String x = "hi";
+		String x = "hi there";
 		return x;
 	}
 	public String AB(){
