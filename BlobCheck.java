@@ -4,7 +4,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class MethodLimitCheck extends AbstractCheck
+public class BlobCheck extends AbstractCheck
 {
   private static final int DEFAULT_MAX_METHODS = 30;
   private static final int DEFAULT_MAX_IMPORTS = 20;

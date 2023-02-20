@@ -4,7 +4,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class MethodLimitCheck extends AbstractCheck
+public class ShotgunCheck extends AbstractCheck
 {
   private static final int DEFAULT_MAX = 3;
   private int max = DEFAULT_MAX;

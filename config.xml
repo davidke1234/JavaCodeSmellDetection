@@ -8,8 +8,11 @@
     <module name="UpperEll"/>
     <module name="MethodLength"/>
           <!-- your Check goes here -->
-    <module name="CodeSmell.MethodLimitCheck">
-      <property name="max" value="2"/>
+    <module name="CodeSmell.BlobCheck"/>
+      <property name="max" value="30"/>
+      <property name="maxImports" value="20"/>
+    <module name="CodeSmell.ShotgunCheck">
+      <property name="max" value="3"/>
     </module>
   </module>
 </module>
