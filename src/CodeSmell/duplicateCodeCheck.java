@@ -29,6 +29,16 @@ public class duplicateCodeCheck extends AbstractCheck {
 			if (hasDupes)
 				log(1, "duplicate code found");
 	  }
+	
+	  public void setMaxMethods(int limit)
+	  {
+		  maxMethods = limit;
+	  } 
+	  
+	  public void setMaxLineNumbers(int limit)
+	  {
+		  maxLineNumbers = limit;
+	  }
 
 	public boolean hasDupes(ArrayList<String> lines) {
 
