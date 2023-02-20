@@ -6,26 +6,20 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MethodLimitCheck extends AbstractCheck
 {
-  private static final int DEFAULT_MAX_METHODS = 30;
-  private static final int DEFAULT_MAX_IMPORTS = 20;
-  private int max = DEFAULT_MAX_METHODS;
-  private int maxImports = DEFAULT_MAX_IMPORTS;
-
+  private static final int DEFAULT_MAX = 3;
+  private int max = DEFAULT_MAX;
+  
   @Override
   public int[] getDefaultTokens()
   {
     return new int[]{TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
   }
 
-  public void setMaxMethods(int limit)
+  public void setMax(int limit)
   {
     max = limit;
   }
   
-  public void setMaxImports(int limit)
-  {
-    maxImports = limit;
-  }
   
   @Override
   public void visitToken(DetailAST ast)
@@ -34,13 +28,11 @@ public class MethodLimitCheck extends AbstractCheck
     DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
 
     // count the number of direct children of the OBJBLOCK
-    // that are METHOD_DEFS
-    int methodDefs = objBlock.getChildCount(TokenTypes.METHOD_DEF);
-    // that are IMPORTs
-    int imports = objBlock.getChildCount(TokenTypes.IMPORT);
+    // that are METHOD_CALLs
+    int methodDefs = objBlock.getChildCount(TokenTypes.METHOD_CALL);
     // report violation if limit is reached
-    if (methodDefs > this.max || imports > this.maxImports) {
-      String message = "potential Blob class issue. " + this.max + " classes are allowed and "+this.maxImports+" imports are allowed";
+    if (methodDefs > this.max) {
+      String message = "potential Shotgun Surgery issue. " + this.max + " external function calls are allowed ";
       log(ast.getLineNo(), message);
     }
   }
