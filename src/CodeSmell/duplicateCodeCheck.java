@@ -8,6 +8,9 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class duplicateCodeCheck extends AbstractCheck {
+	
+	 private int maxDupes = 1;
+	  
 
 	public void visitToken(DetailAST ast)
 	  {
@@ -30,15 +33,11 @@ public class duplicateCodeCheck extends AbstractCheck {
 				log(1, "duplicate code found");
 	  }
 	
-	  public void setMaxMethods(int limit)
+	  public void setMaxDupes(int limit)
 	  {
-		  maxMethods = limit;
+		  maxDupes = limit;
 	  } 
 	  
-	  public void setMaxLineNumbers(int limit)
-	  {
-		  maxLineNumbers = limit;
-	  }
 
 	public boolean hasDupes(ArrayList<String> lines) {
 
