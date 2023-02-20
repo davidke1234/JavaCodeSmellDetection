@@ -3,12 +3,13 @@ package CodeSmell;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class duplicateCodeCheck {
+public class duplicateCodeCheck extends AbstractCheck {
 
-	public void GetDuplicateCode(DetailAST ast)
+	public void visitToken(DetailAST ast)
 	  {
 			ArrayList<String> lines = new ArrayList<String>();
 		
@@ -25,9 +26,11 @@ public class duplicateCodeCheck {
 			}
 			
 			boolean hasDupes = hasDupes(lines);
+			if (hasDupes)
+				log(1, "duplicate code found");
 	  }
 
-	private boolean hasDupes(ArrayList<String> lines) {
+	public boolean hasDupes(ArrayList<String> lines) {
 
 		for (String line : lines) {
 			line = line.trim();
@@ -42,6 +45,21 @@ public class duplicateCodeCheck {
 		return false;
 	}
 
+	@Override
+	public int[] getAcceptableTokens() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	@Override
+	public int[] getDefaultTokens() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	@Override
+	public int[] getRequiredTokens() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
