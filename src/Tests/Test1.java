@@ -16,9 +16,7 @@ public class Test1 {
 		ArrayList<String> lines = new ArrayList<String>();
 		lines.add("String x = Hello World");
 		lines.add("String x = Hello World");
-		
 		boolean result = dupes.hasDupes(lines);
-		
 		assertTrue(result);
 	}
 
@@ -27,11 +25,7 @@ public class Test1 {
 		duplicateCodeCheck dupes = new duplicateCodeCheck();
 		ArrayList<String> lines = new ArrayList<String>();
 		lines.add("String x = Hello World");
-		
 		boolean result = dupes.hasDupes(lines);
-		
 		assertFalse(result);
 	}
-
-
 }
