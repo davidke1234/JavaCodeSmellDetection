@@ -4,8 +4,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class SwissArmyKnifeCheck extends AbstractCheck
-{
+public class SwissArmyKnifeCheck extends AbstractCheck {
   private static final int DEFAULT_LINE_NUMBERS = 500;
   private static final int DEFAULT_MAX_METHODS = 30;
     
@@ -13,24 +12,20 @@ public class SwissArmyKnifeCheck extends AbstractCheck
   private int maxLineNumbers = DEFAULT_LINE_NUMBERS;
 
   @Override
-  public int[] getDefaultTokens()
-  {
+  public int[] getDefaultTokens() {
     return new int[]{TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
   }
 
-  public void setMaxMethods(int limit)
-  {
+  public void setMaxMethods(int limit){
 	  maxMethods = limit;
   } 
   
-  public void setMaxLineNumbers(int limit)
-  {
+  public void setMaxLineNumbers(int limit){
 	  maxLineNumbers = limit;
   }
   
   @Override
-  public void visitToken(DetailAST ast)
-  {
+  public void visitToken(DetailAST ast){
     // find the OBJBLOCK node below the CLASS_DEF/INTERFACE_DEF
     DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
 
@@ -39,7 +34,7 @@ public class SwissArmyKnifeCheck extends AbstractCheck
     int methodDefCount = objBlock.getChildCount(TokenTypes.METHOD_DEF);
 
     // report violation if limit is reached
-    if (methodDefCount > this.maxMethods ) {
+    if (methodDefCount > this.maxMethods ){
       String message = "SwissArmyKnife issue. " + this.maxMethods + " methods are allowed";
       log(ast.getLineNo(), message);
     }
@@ -50,8 +45,7 @@ public class SwissArmyKnifeCheck extends AbstractCheck
     if (lineNumbers > this.maxLineNumbers) {
       String message = "SwissArmyKnife issue. " + this.maxLineNumbers + " lines are allowed";
       log(ast.getLineNo(), message);
-    }
-    
+    } 
   }
 
 	@Override

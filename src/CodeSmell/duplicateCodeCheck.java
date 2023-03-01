@@ -12,34 +12,30 @@ public class duplicateCodeCheck extends AbstractCheck {
 	 private int maxDupes = 1;
 	  
 
-	public void visitToken(DetailAST ast)
-	  {
-			ArrayList<String> lines = new ArrayList<String>();
+	public void visitToken(DetailAST ast){
+		ArrayList<String> lines = new ArrayList<String>();
+	
+		DetailAST classDef = ast.findFirstToken(TokenTypes.CLASS_DEF);    
+	    
+		int countOfChildren = classDef.getChildCount();
 		
-			DetailAST classDef = ast.findFirstToken(TokenTypes.CLASS_DEF);    
-		    
-			int countOfChildren = classDef.getChildCount();
-			
-			for (int i = 0; i < countOfChildren; i++)
-			{
-				DetailAST sibling = classDef.getNextSibling();
-				if (sibling.getType() == TokenTypes.METHOD_DEF) {
-					lines.add(sibling.getText());
-				}
+		for (int i = 0; i < countOfChildren; i++){
+			DetailAST sibling = classDef.getNextSibling();
+			if (sibling.getType() == TokenTypes.METHOD_DEF) {
+				lines.add(sibling.getText());
 			}
-			
-			boolean hasDupes = hasDupes(lines);
-			if (hasDupes)
-				log(1, "duplicate code found");
+		}
+		
+		boolean hasDupes = hasDupes(lines);
+		if (hasDupes)
+			log(1, "duplicate code found");
 	  }
 	
-	  public void setMaxDupes(int limit)
-	  {
+	  public void setMaxDupes(int limit){
 		  maxDupes = limit;
-	  } 
-	  
+	  }  
 
-	public boolean hasDupes(ArrayList<String> lines) {
+	public boolean hasDupes(ArrayList<String> lines){
 
 		for (String line : lines) {
 			line = line.trim();
