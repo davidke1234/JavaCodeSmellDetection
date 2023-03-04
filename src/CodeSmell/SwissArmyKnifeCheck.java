@@ -5,8 +5,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class SwissArmyKnifeCheck extends AbstractCheck {
-  private static final int DEFAULT_LINE_NUMBERS = 500;
-  private static final int DEFAULT_MAX_METHODS = 30;
+  private static final int DEFAULT_LINE_NUMBERS = 50;
+  private static final int DEFAULT_MAX_METHODS = 5;
     
   private int maxMethods = DEFAULT_MAX_METHODS;
   private int maxLineNumbers = DEFAULT_LINE_NUMBERS;

@@ -9,9 +9,19 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class duplicateCodeCheck extends AbstractCheck {
 	
-	 private int maxDupes = 1;
+	private static final int DEFAULT_MAX_DUPLICATELINES = 1;
+	private int maxDupes = DEFAULT_MAX_DUPLICATELINES;
 	  
+	@Override
+	public int[] getDefaultTokens() {
+	  return new int[]{TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
+	}
 
+	public void setMaxDups(int limit){
+		this.maxDupes = limit;
+	} 
+	
+    @Override
 	public void visitToken(DetailAST ast){
 		ArrayList<String> lines = new ArrayList<String>();
 	
@@ -29,12 +39,8 @@ public class duplicateCodeCheck extends AbstractCheck {
 		boolean hasDupes = hasDupes(lines);
 		if (hasDupes)
 			log(1, "duplicate code found");
-	  }
+	}
 	
-	  public void setMaxDupes(int limit){
-		  maxDupes = limit;
-	  }  
-
 	public boolean hasDupes(ArrayList<String> lines){
 
 		for (String line : lines) {
@@ -42,7 +48,7 @@ public class duplicateCodeCheck extends AbstractCheck {
 			
 			if (line.length() > 0 && line != "{" && line != "}")
 			{
-				if (Collections.frequency(lines, line) > 1)
+				if (Collections.frequency(lines, line) > this.maxDupes)
 					return true;
 			}
 		}
@@ -57,14 +63,10 @@ public class duplicateCodeCheck extends AbstractCheck {
 	}
 
 	@Override
-	public int[] getDefaultTokens() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public int[] getRequiredTokens() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 }
