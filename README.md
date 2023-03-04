@@ -12,5 +12,7 @@ Technology:
 
 References:
 1. [Extending CheckStyle](https://checkstyle.org/extending.html)
-2.  Run Checkstyle SDK Gui
+1.  Run Checkstyle SDK Gui:
 		D:\WSU\582 Testing\Project\582Project>java -cp checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.gui.Main 
+1.  Test a file:
+	java -jar checkstyle-10.8.0-all.jar -c /sun_checks.xml src/CodeSmell/MyClass.java 
