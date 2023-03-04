@@ -8,17 +8,23 @@ Technology:
 1. Eclipse: Version: 2022-09 (4.25.0)
 1. JRE System Library: JavaSE-17
 1. JUnit 4
-1. CheckStyle 10.8.0
+1. CheckStyle plugin ver 10.8.0
 
 References:
 1. Documentation: [Extending CheckStyle](https://checkstyle.org/extending.html)
 2. Run CheckStyle GUI:
 	D:\WSU\582 Testing\Project\582Project>java -cp checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.gui.Main 
 
+How to build a custom checker:
+	
+1. Check the AST (abstract syntax tree)
+    - java -jar checkstyle-10.8.0-all.jar -t Check.java
+    - Use the CheckStyle API: import com.puppycrawl.tools.checkstyle.api.*
+	
 How to test files:
 	
 1. Run checkStyle with default xml file:
-	- java -jar checkstyle-10.8.0-all.jar -c /sun_checks.xml src/CodeSmell/MyClass.java 
+	- java -jar checkstyle-10.8.0-all.jar -c /sun_checks.xml src/CodeSmell/Check.java 
            
 1. Run checkstyle with custom module(s) (Root module, Checks, etc) in configuration file:
 (https://checkstyle.org/cmdline.html)
