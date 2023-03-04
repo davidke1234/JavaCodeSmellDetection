@@ -8,7 +8,7 @@ Technology:
 1. Eclipse: Version: 2022-09 (4.25.0)
 1. JRE System Library: JavaSE-17
 1. JUnit 4
-1. CheckStyle 10.4
+1. CheckStyle 10.8.0
 
 References:
 1. [Extending CheckStyle](https://checkstyle.org/extending.html)
