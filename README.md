@@ -11,8 +11,20 @@ Technology:
 1. CheckStyle 10.8.0
 
 References:
-1. [Extending CheckStyle](https://checkstyle.org/extending.html)
-1.  Run Checkstyle SDK Gui:
-		D:\WSU\582 Testing\Project\582Project>java -cp checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.gui.Main 
-1.  Test a file:
-	java -jar checkstyle-10.8.0-all.jar -c /sun_checks.xml src/CodeSmell/MyClass.java 
+1. Documentation: [Extending CheckStyle](https://checkstyle.org/extending.html)
+2. Run CheckStyle GUI:
+	D:\WSU\582 Testing\Project\582Project>java -cp checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.gui.Main 
+
+How to test files:
+	
+1. Run checkStyle with default xml file:
+	- java -jar checkstyle-10.8.0-all.jar -c /sun_checks.xml src/CodeSmell/MyClass.java 
+           
+1. Run checkstyle with custom module(s) (Root module, Checks, etc) in configuration file:
+(https://checkstyle.org/cmdline.html)
+	- Export your class project as a jar file.  CodeSmell.jar
+	- Execute in a cmd line: 
+	
+		- D:\WSU\582 Testing\Project\582Project>java -classpath CodeSmell.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c config.xml Check.java
+
+		Note: Custom modules should be specified with the class' full classpath in the configuration file and the compiled class be located in the custom JAR for Checkstyle to find. 
