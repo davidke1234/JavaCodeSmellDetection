@@ -1,9 +1,17 @@
-##582Project CodeSmell Detection
+## 582 Class Project: CodeSmell Detection
 
-### Setup:
+### Team members
+- Garhgaj Singh
+- David Kelly
+- Hunter Davis
 
-- Right click on a jar file to add to build path.
-- Configure CheckStyle: Window: Preferences: CheckStyle.  Add custom xml file and set to default.
+### Code smell detectors:
+- Blob
+- Shotgun
+- Spaghetti Code
+- Type Checking
+- Swiss Army Knife
+- Duplicate Code
 
 ### Technology:
 
@@ -11,6 +19,11 @@
 - JRE System Library: JavaSE-17
 - JUnit 4
 - CheckStyle plugin ver 10.8.0
+
+### Setup:
+
+- Right click on a jar file to add to build path.
+- Configure CheckStyle: Window: Preferences: CheckStyle.  Add custom xml file and set to default.
 
 ### References:
 
