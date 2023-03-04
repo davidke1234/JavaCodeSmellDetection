@@ -48,6 +48,7 @@ public class duplicateCodeCheck extends AbstractCheck {
 			
 			if (line.length() > 0 && line != "{" && line != "}")
 			{
+				//TODO: grab trees of diff methods?
 				if (Collections.frequency(lines, line) > this.maxDupes)
 					return true;
 			}
