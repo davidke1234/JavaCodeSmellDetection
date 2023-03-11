@@ -11,13 +11,13 @@ import org.powermock.api.easymock.PowerMock;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+//@RunWith(PowerMockRunner.class)
+//@PrepareForTest()
 public class Test1 {
 
-	//@RunWith(PowerMockRunner.class)
-	//@PrepareForTest()
-	public void testDuplicateCodeCheck() {
-		duplicateCodeCheck dupes = new duplicateCodeCheck();
-	}
+	//public void testDuplicateCodeCheck() {
+	//	duplicateCodeCheck dupes = new duplicateCodeCheck();
+	//}
 	
 	@Test
 	public void testHasDupes_ReturnsTrue() {
