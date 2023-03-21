@@ -22,10 +22,11 @@ public class Test1 {
 
 	@Test
 	public void testDuplicateCodeCheck() {
+	// update ast: replace ">" with "&gt;" and "<" with "&lt;"
 	DuplicateCodeCheck dupes = new DuplicateCodeCheck();
 	
 	try {
-		File file = new File("CheckJava_SampleAST.txt");
+		File file = new File("CheckJava_SampleAST1.txt");
 		  Scanner myReader = new Scanner(file);
 		  while (myReader.hasNextLine()) {
 		    String data = myReader.nextLine();
