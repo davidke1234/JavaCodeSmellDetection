@@ -27,13 +27,6 @@
 	 
   <module name="TreeWalker">
           <!-- your standard Checks that come with Checkstyle -->
-    <module name="InvalidJavadocPosition"/>
-    <module name="JavadocMethod"/>
-    <module name="JavadocType"/>
-    <module name="JavadocVariable"/>
-    <module name="JavadocStyle"/>
-    <module name="MissingJavadocMethod"/>
-	
     <module name="UpperEll"/>
     <module name="MethodLength"/>
           <!-- your Check goes here -->
@@ -41,11 +34,11 @@
       <property name="max" value="1"/>
     </module>
 	<module name="CodeSmell.SwissArmyKnifeCheck">
-      <property name="maxLines" value="500"/>
-	  <property name="maxMethods" value="30"/>
+      <property name="maxLines" value="1"/>
+	  <property name="maxMethods" value="1"/>
     </module>
     <module name="CodeSmell.MethodLimitCheck">
-      <property name="max" value="45"/>
+      <property name="max" value="1"/>
     </module>
   </module>
 </module>

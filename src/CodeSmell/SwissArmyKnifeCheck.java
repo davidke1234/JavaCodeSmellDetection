@@ -47,9 +47,15 @@ public class SwissArmyKnifeCheck extends AbstractCheck {
       String message = "SwissArmyKnife issue. " + this.maxLines + " lines are allowed";
       log(ast.getLineNo(), message);
     } 
+    else
+    {
+    	String message = "No SwissArmyKnife issues. ";
+        log(ast.getLineNo(), message);
+    }
+  }
     
     //TODO: do more work on swiss army knife.  Too much like blob.
-  }
+  
 
 	@Override
 	public int[] getAcceptableTokens() {

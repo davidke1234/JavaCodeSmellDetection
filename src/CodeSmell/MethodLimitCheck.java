@@ -34,7 +34,7 @@ public class MethodLimitCheck extends AbstractCheck
     }
     else
     {
-    	String message = "everything looks fine, only " + this.max + " are allowed";
+    	String message = "No Method Limit Reached";
         log(ast.getLineNo(), message);
     }
   }

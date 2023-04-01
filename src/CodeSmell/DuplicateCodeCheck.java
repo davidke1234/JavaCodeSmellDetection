@@ -25,12 +25,20 @@ public class DuplicateCodeCheck extends AbstractCheck {
 	public void visitToken(DetailAST ast) {
 		ArrayList<String> lines = new ArrayList<String>();
 
-		DetailAST classDef = ast.findFirstToken(TokenTypes.CLASS_DEF);
+		//DetailAST classDef = ast.findFirstToken(TokenTypes.CLASS_DEF);
+		//int countOfChildren = classDef.getChildCount();
 
-		int countOfChildren = classDef.getChildCount();
+		// find the OBJBLOCK node below the CLASS_DEF/INTERFACE_DEF
+	    DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
 
+	    // count the number of direct children of the OBJBLOCK
+	    // that are METHOD_DEFS
+	    int countOfChildren = objBlock.getChildCount(TokenTypes.METHOD_DEF);
+	    
 		for (int i = 0; i < countOfChildren; i++) {
-			DetailAST sibling = classDef.getNextSibling();
+			DetailAST sibling = objBlock.findFirstToken(i);
+			if (sibling == null)
+				continue;
 			if (sibling.getType() == TokenTypes.METHOD_DEF) {
 				lines.add(sibling.getText());
 			}
@@ -38,21 +46,23 @@ public class DuplicateCodeCheck extends AbstractCheck {
 
 		boolean hasDupes = hasDupes(lines);
 		if (hasDupes)
-			log(1, "duplicate code found");
+			log(1, "duplicate code found: " + lines.size());
 		else
-			log(1, "No duplicate code found");
-
+			log(1, "No duplicate code found: " + lines.size());
 	}
 
 	public boolean hasDupes(ArrayList<String> lines) {
 
-		for (String line : lines) {
-			line = line.trim();
-
-			if (line.length() > 0 && line != "{" && line != "}") {
-				// TODO: grab trees of diff methods?
-				if (Collections.frequency(lines, line) > this.max)
-					return true;
+		if (lines.size() > 0)
+		{
+			for (String line : lines) {
+				line = line.trim();
+	
+				if (line.length() > 0 && line != "{" && line != "}") {
+					// TODO: grab trees of diff methods?
+					if (Collections.frequency(lines, line) > this.max)
+						return true;
+				}
 			}
 		}
 
