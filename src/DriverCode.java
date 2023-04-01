@@ -1,12 +1,16 @@
 
 import java.lang.reflect.ParameterizedType;
 
+
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 import java.lang.reflect.WildcardType;
 import java.util.Collection;
 import java.util.*;
-//import com.puppycrawl.tools.checkstyle.api.*;
+import com.puppycrawl.tools.checkstyle.api.*;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 //detectors 
  class SpaghettiCodeDetector {
     public static boolean isSpaghettiCode(String code) {

@@ -1,0 +1,3 @@
+com\antipattern\detector\AntipatternDetector\ConcreteSpaghettiCodeDetector.class
+com\antipattern\detector\AntipatternDetector\TypeCheckingDetector.class
+com\antipattern\detector\AntipatternDetector\SpaghettiCodeDetector.class
