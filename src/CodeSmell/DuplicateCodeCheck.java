@@ -1,3 +1,7 @@
+/* Sample code at 
+ * https://github.com/sevntu-checkstyle/sevntu.checkstyle/tree/master/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding
+ */
+
 package CodeSmell;
 
 import java.util.ArrayList;
@@ -40,6 +44,92 @@ public class DuplicateCodeCheck extends AbstractCheck {
 		if (hasDupes)
 			log(1, "duplicate code found");
 	}
+    
+    /* Sample
+    @Override
+    public void visitToken(DetailAST ast) {
+        final int type = ast.getType();
+        final DetailAST parent = ast.getParent();
+
+        // shouldn't process assign in annotation pairs
+        if (type != TokenTypes.ASSIGN
+            || parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
+            final boolean surrounded = isSurrounded(ast);
+
+            // An identifier surrounded by parentheses.
+            if (surrounded && type == TokenTypes.IDENT) {
+                parentToSkip = ast.getParent();
+                log(ast, MSG_KEY_IDENT, ast.getText());
+            }
+            // A literal (numeric or string) surrounded by parentheses.
+            else if (surrounded && inTokenList(type, LITERALS)) {
+                parentToSkip = ast.getParent();
+                if (type == TokenTypes.STRING_LITERAL) {
+                    log(ast, MSG_KEY_STRING,
+                        chopString(ast.getText()));
+                }
+                else {
+                    log(ast, MSG_KEY_LITERAL, ast.getText());
+                }
+            }
+            // The rhs of an assignment surrounded by parentheses.
+            else if (inTokenList(type, ASSIGNMENTS)) {
+                assignDepth++;
+                final DetailAST last = ast.getLastChild();
+                if (last.getType() == TokenTypes.RPAREN) {
+                    final DetailAST subtree = ast.getFirstChild().getNextSibling()
+                        .getNextSibling();
+                    final int subtreeType = subtree.getType();
+                    if (!ignoreCalculationOfBooleanVariables || !inTokenList(
+                        subtreeType, EQUALS)) {
+                        log(ast, MSG_KEY_ASSIGN);
+                    }
+                }
+            }
+        }
+    }
+*/
+    /* Sample
+    @Override
+    public void visitToken(DetailAST ast) {
+        final DetailAST expressionAst = ast.findFirstToken(TokenTypes.EXPR);
+
+        switch (ast.getType()) {
+            case TokenTypes.LITERAL_RETURN:
+                if (!isEmptyReturn(ast)) {
+                    final DetailAST inversionAst = getInversion(expressionAst);
+
+                    if (isAvoidableInversion(inversionAst)) {
+                        log(inversionAst);
+                    }
+                }
+                break;
+
+            case TokenTypes.LITERAL_WHILE:
+            case TokenTypes.LITERAL_DO:
+            case TokenTypes.LITERAL_IF:
+                final DetailAST invertedAst = getInversion(expressionAst);
+                if (isAvoidableInversion(invertedAst)) {
+                    log(invertedAst);
+                }
+                break;
+
+            case TokenTypes.FOR_CONDITION:
+                if (!isEmptyForCondition(ast)) {
+                    final DetailAST inversionAst = getInversion(expressionAst);
+
+                    if (isAvoidableInversion(inversionAst)) {
+                        log(inversionAst);
+                    }
+                }
+                break;
+
+            default:
+                SevntuUtil.reportInvalidToken(ast.getType());
+                break;
+        }
+    }
+*/
 	
 	public boolean hasDupes(ArrayList<String> lines){
 
