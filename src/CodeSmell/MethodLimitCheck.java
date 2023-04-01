@@ -32,6 +32,11 @@ public class MethodLimitCheck extends AbstractCheck
       String message = "too many methods, only " + this.max + " are allowed";
       log(ast.getLineNo(), message);
     }
+    else
+    {
+    	String message = "everything looks fine, only " + this.max + " are allowed";
+        log(ast.getLineNo(), message);
+    }
   }
 
 @Override

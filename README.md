@@ -53,7 +53,7 @@
 
 - Run checkstyle with custom module(s) (Root module, Checks, etc) in configuration file:
 (https://checkstyle.org/cmdline.html)
-    - Export your class project as a jar file. CodeSmell.jar.
+    - Export your class project as a jar file -> CodeSmell.jar.  Use your config.xml file instead of sun_checks.xml.
     - Execute in a cmd line:
 		   \582Project>java -classpath CodeSmell.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c config.xml Check.java
 

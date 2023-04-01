@@ -9,11 +9,14 @@
     <module name="MethodLength"/>
           <!-- your Check goes here -->
     <module name="CodeSmell.duplicateCodeCheck">
-      <property name="maxDupes" value="1"/>
+      <property name="max" value="1"/>
     </module>
 	<module name="CodeSmell.SwissArmyKnifeCheck">
-      <property name="maxLines" value="500"/>
+      <property name="maxLines" value="50"/>
 	  <property name="maxMethods" value="30"/>
+    </module>
+    <module name="CodeSmell.MethodLimitCheck">
+      <property name="max" value="45"/>
     </module>
   </module>
 </module>

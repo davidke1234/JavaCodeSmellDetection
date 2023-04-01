@@ -9,7 +9,7 @@ public class SwissArmyKnifeCheck extends AbstractCheck {
   private static final int DEFAULT_MAX_METHODS = 5;
     
   private int maxMethods = DEFAULT_MAX_METHODS;
-  private int maxLineNumbers = DEFAULT_LINE_NUMBERS;
+  private int maxLines = DEFAULT_LINE_NUMBERS;
 
   @Override
   public int[] getDefaultTokens() {
@@ -21,8 +21,8 @@ public class SwissArmyKnifeCheck extends AbstractCheck {
 	maxMethods = limit;
   } 
   
-  public void setMaxLineNumbers(int limit){
-	  maxLineNumbers = limit;
+  public void setMaxLines(int limit){
+	  maxLines = limit;
   }
   
   @Override
@@ -43,8 +43,8 @@ public class SwissArmyKnifeCheck extends AbstractCheck {
     int lineNumbers = objBlock.getLineNo();
       
     // report violation if limit is reached
-    if (lineNumbers > this.maxLineNumbers) {
-      String message = "SwissArmyKnife issue. " + this.maxLineNumbers + " lines are allowed";
+    if (lineNumbers > this.maxLines) {
+      String message = "SwissArmyKnife issue. " + this.maxLines + " lines are allowed";
       log(ast.getLineNo(), message);
     } 
     
