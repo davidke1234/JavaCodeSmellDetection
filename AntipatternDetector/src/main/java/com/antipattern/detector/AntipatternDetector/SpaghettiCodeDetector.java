@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public abstract class SpaghettiCodeDetector extends AbstractCheck {
+public class SpaghettiCodeDetector extends AbstractCheck {
     private static final int MAX_METHOD_LENGTH = 50;
     private static final int MAX_NESTING_DEPTH = 4;
 
@@ -46,4 +46,10 @@ public abstract class SpaghettiCodeDetector extends AbstractCheck {
         }
         return depth;
     }
+
+	@Override
+	public int[] getAcceptableTokens() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

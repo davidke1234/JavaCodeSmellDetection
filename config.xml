@@ -15,14 +15,7 @@
     <property name="fileExtensions" value="java"/>
   </module>
   <module name="FileTabCharacter"/>
-  
-  <module name="RegexpSingleline">
-    <property name="format" value="\s+$"/>
-    <property name="minimum" value="0"/>
-    <property name="maximum" value="0"/>
-    <property name="message" value="Line has trailing spaces."/>
-  </module>
-  <module name="TreeWalker">
+ <module name="TreeWalker">
           <!-- your standard Checks that come with Checkstyle -->
     <module name="UpperEll"/>
      <!-- your Check goes here -->

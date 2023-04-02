@@ -4,7 +4,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class TypeCheckingDetector extends AbstractCheck {
+public abstract class TypeCheckingDetector extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
@@ -26,16 +26,4 @@ public class TypeCheckingDetector extends AbstractCheck {
             }
         }
     }
-
-	@Override
-	public int[] getAcceptableTokens() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int[] getRequiredTokens() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.antipattern.detector.AntipatternDetector.*;
 
 public class ConcreteSpaghettiCodeDetector extends SpaghettiCodeDetector {
 
