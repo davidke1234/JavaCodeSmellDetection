@@ -7,6 +7,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
+
 public class DuplicateCodeCheck extends AbstractCheck {
 
 	private static final int DEFAULT_MAX_DUPLICATELINES = 1;

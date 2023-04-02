@@ -9,7 +9,13 @@
   <module name="TreeWalker">
 	 <module name="MultipleStringLiterals">
 	   <property name="allowedDuplicates" value="1"/>
+	   <property name="ignoreStringsRegexp" value='^(("")|(", "))$'/>
 	 </module>
+	 <module name="CyclomaticComplexity">
+   		<property name="max" value="1"/>
+   		<property name="tokens" value="LITERAL_WHILE, LITERAL_DO"/>
+ 	</module>
+ 
           <!-- your standard Checks that come with Checkstyle -->
     <module name="UpperEll"/>
           <!-- your Check goes here -->
@@ -19,6 +25,7 @@
 	<module name="CodeSmell.SwissArmyKnifeCheck">
       <property name="maxLines" value="1"/>
 	  <property name="maxMethods" value="1"/>
+	  <property name="maxInterfaces" value="1"/>
     </module>
   </module>
 </module>
