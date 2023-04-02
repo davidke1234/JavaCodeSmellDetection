@@ -8,5 +8,14 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="D:/WSU/582 Testing/Project/582Project/checkstyle-10.8.0-all.jar"/>
+	<classpathentry kind="lib" path="D:/WSU/582 Testing/Project/582Project/CodeSmell.jar"/>
+	<classpathentry kind="lib" path="D:/WSU/582 Testing/Project/582Project/mockito-all-1.10.19.jar"/>
+	<classpathentry kind="lib" path="D:/WSU/582 Testing/Project/582Project/JarFiles/cglib-nodep-3.2.2.jar"/>
+	<classpathentry kind="lib" path="D:/WSU/582 Testing/Project/582Project/JarFiles/easymock-3.4.jar"/>
+	<classpathentry kind="lib" path="D:/WSU/582 Testing/Project/582Project/JarFiles/hamcrest-all-1.3.jar"/>
+	<classpathentry kind="lib" path="D:/WSU/582 Testing/Project/582Project/JarFiles/javassist-3.12.1.GA.jar"/>
+	<classpathentry kind="lib" path="D:/WSU/582 Testing/Project/582Project/JarFiles/objenesis-2.2.jar"/>
+	<classpathentry kind="lib" path="D:/WSU/582 Testing/Project/582Project/JarFiles/powermock-api-easymock-1.6.5.jar"/>
+	<classpathentry kind="lib" path="D:/WSU/582 Testing/Project/582Project/JarFiles/powermock-mockito-release-full-1.6.4-full.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,7 +1,3 @@
-Sample AST - abstract syntax tree
-
-D:\WSU\582 Testing\Project\582Project>java -jar checkstyle-10.8.0-all.jar -t Check.java
-
 COMPILATION_UNIT -> COMPILATION_UNIT [1:0]
 |--PACKAGE_DEF -> package [1:0]
 |   |--ANNOTATIONS -> ANNOTATIONS [1:8]
