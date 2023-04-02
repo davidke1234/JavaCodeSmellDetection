@@ -7,6 +7,9 @@
   <property name="severity" value="error"/>
   <module name="FileTabCharacter"/> 
   <module name="TreeWalker">
+	 <module name="MultipleStringLiterals">
+	   <property name="allowedDuplicates" value="1"/>
+	 </module>
           <!-- your standard Checks that come with Checkstyle -->
     <module name="UpperEll"/>
           <!-- your Check goes here -->
