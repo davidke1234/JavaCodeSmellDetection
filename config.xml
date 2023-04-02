@@ -13,7 +13,7 @@
 	 </module>
 	 <module name="CyclomaticComplexity">
    		<property name="max" value="1"/>
-   		<property name="tokens" value="LITERAL_WHILE, LITERAL_DO"/>
+   		<property name="tokens" value="LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, LITERAL_IF, LITERAL_SWITCH, LITERAL_CASE, LITERAL_CATCH, QUESTION, LAND, LOR"/>
  	</module>
  
           <!-- your standard Checks that come with Checkstyle -->
