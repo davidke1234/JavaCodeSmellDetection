@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 //This is a JUnit test class for ConcreteSpaghettiCodeDetector, a class used to detect antipatterns in code.
 //The ConcreteSpaghettiCodeDetectorTest class tests two methods: getAcceptableTokens() and visitToken().
 //This is a black-box testing technique.
+//changes
 class ConcreteSpaghettiCodeDetectorTest {
 
     private ConcreteSpaghettiCodeDetector detector;
