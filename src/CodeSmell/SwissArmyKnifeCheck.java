@@ -15,7 +15,6 @@ public class SwissArmyKnifeCheck extends AbstractCheck {
   public int[] getDefaultTokens() {
     return new int[]{TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
   }
-
   
   public void setMaxMethods(int limit){
 	maxMethods = limit;
