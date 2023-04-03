@@ -37,6 +37,8 @@ public class SwissArmyKnifeCheck extends AbstractCheck {
 	//check cyclomatic complexity
 	//Done via config.xml
 	  
+	//log(1, "ast count" + ast.getChildCount());
+	  
     DetailAST objCompUnit = ast.findFirstToken(TokenTypes.COMPILATION_UNIT);
 
     //Check interface count
@@ -64,25 +66,34 @@ public class SwissArmyKnifeCheck extends AbstractCheck {
 	      String message = "SwissArmyKnife issue. " + this.maxMethods + " methods are allowed";
 	      log(ast.getLineNo(), message);
 	    }
-    }
     
-    //check number of lines
-    int lineNumbers = objBlock.getLineNo();
-      
-    // report violation if limit is reached
-    if (lineNumbers > this.maxLines) {
-      String message = "SwissArmyKnife issue. " + this.maxLines + " lines are allowed";
-      log(ast.getLineNo(), message);
-    } 
+    
+	    //check number of lines
+	    int lineNumbers = objBlock.getLineNo();
+	      
+	    // report violation if limit is reached
+	    String message = checkViolationOfMaxLines(lineNumbers, this.maxLines);
+	    log(ast.getLineNo(), message);
+    }
     else
-    {
-    	String message = "No SwissArmyKnife issues. ";
-        log(ast.getLineNo(), message);
-    }
-  }
+    	log(ast.getLineNo(), "objblock is null");
     
-    //TODO: do more work on swiss army knife.  Too much like blob.
-  
+    
+  }
+
+  public String checkViolationOfMaxLines(int lineNumbers, int maxLines) {
+	  String message="";
+	  
+		if (lineNumbers > maxLines) {
+		   message = "SwissArmyKnife issue. " + maxLines + " lines are allowed";
+		} 
+		else
+		{
+		   message = "No SwissArmyKnife issues with line numbers.";
+		}
+		
+		return message;
+    } 
 
 	@Override
 	public int[] getAcceptableTokens() {
@@ -95,4 +106,4 @@ public class SwissArmyKnifeCheck extends AbstractCheck {
 		// TODO Auto-generated method stub
 		return null;
 	}
-}
+ }

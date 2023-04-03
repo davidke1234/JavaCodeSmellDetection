@@ -16,9 +16,8 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-//@RunWith(PowerMockRunner.class)
-//@PrepareForTest()
-public class Test1 {
+
+public class TestDuplicateCode {
 
 	@Test
 	public void testDuplicateCodeCheck() {

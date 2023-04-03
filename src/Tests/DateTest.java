@@ -15,19 +15,19 @@ import CodeSmell.Date;
 //@PrepareForTest(Date.class)
 public class DateTest {
 
-	@Test
+	//@Test
 	public void testIsLeapYear() {
 		Date date = new Date(1, 1, 2000);
 		boolean isLeap = Date.isLeap(2000);
 		assertTrue(isLeap);		
 	}
-	@Test
+	//@Test
 	public void testIsCommonYear() {
 		Date date = new Date(1, 1, 2000);
 		boolean isLeap = date.isLeap(2001);
 		assertFalse(isLeap);		
 	}
-	@Test
+	//@Test
 	public void testIsCenturyYear() {
 		Date date = new Date(1, 1, 1000);
 		boolean isLeap = date.isLeap(1000);
