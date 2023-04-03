@@ -1,6 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\.settings",
+    "\\bin",
+    "\\bin\\CodeSmell",
+    "\\bin\\Tests"
   ],
+  "SelectedNode": "\\.project",
   "PreviewInSolutionExplorer": false
 }
