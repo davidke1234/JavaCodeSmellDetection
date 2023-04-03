@@ -1,4 +1,3 @@
-package CodeSmell;
 
 public class myClass {
 	

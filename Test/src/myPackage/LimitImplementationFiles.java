@@ -1,4 +1,5 @@
-package CodeSmell;
+package myPackage;
+
 import java.io.File;
 import java.util.List;
 import com.puppycrawl.tools.checkstyle.api.*;

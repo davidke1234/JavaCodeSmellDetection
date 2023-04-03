@@ -7,5 +7,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/Hunter/Documents/CPTS 582/582Project/Test/src/checkstyle-10.4-all.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Hunter/Documents/CPTS 582/582Project/Test/src/junit-4.13.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Hunter/Documents/CPTS 582/582Project/Test/src/junit-4.13.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Hunter/Documents/CPTS 582/582Project/Test/src/junit-jupiter-api-5.8.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

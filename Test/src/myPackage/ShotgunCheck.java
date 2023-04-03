@@ -1,4 +1,6 @@
-package CodeSmell;
+package myPackage;
+
+
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;

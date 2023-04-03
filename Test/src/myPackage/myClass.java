@@ -1,4 +1,5 @@
-package CodeSmell;
+package myPackage;
+
 
 public class myClass {
 	
