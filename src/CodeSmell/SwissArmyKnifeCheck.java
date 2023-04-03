@@ -36,9 +36,7 @@ public class SwissArmyKnifeCheck extends AbstractCheck {
     
 	//check cyclomatic complexity
 	//Done via config.xml
-	  
-	//log(1, "ast count" + ast.getChildCount());
-	  
+	    
     DetailAST objCompUnit = ast.findFirstToken(TokenTypes.COMPILATION_UNIT);
 
     //Check interface count
@@ -55,8 +53,7 @@ public class SwissArmyKnifeCheck extends AbstractCheck {
     //find the OBJBLOCK node below the CLASS_DEF/INTERFACE_DEF
     //method count
     DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
-    // count the number of direct children of the OBJBLOCK
-    // that are METHOD_DEFS
+    // count the number of direct children of the OBJBLOCK that are METHOD_DEFS
     if (objBlock != null)
     {
 	    int methodDefCount = objBlock.getChildCount(TokenTypes.METHOD_DEF);
@@ -65,8 +62,7 @@ public class SwissArmyKnifeCheck extends AbstractCheck {
 	    if (methodDefCount > this.maxMethods ){
 	      String message = "SwissArmyKnife issue. " + this.maxMethods + " methods are allowed";
 	      log(ast.getLineNo(), message);
-	    }
-    
+	    }  
     
 	    //check number of lines
 	    int lineNumbers = objBlock.getLineNo();
@@ -76,9 +72,7 @@ public class SwissArmyKnifeCheck extends AbstractCheck {
 	    log(ast.getLineNo(), message);
     }
     else
-    	log(ast.getLineNo(), "objblock is null");
-    
-    
+    	log(ast.getLineNo(), "objblock is null");    
   }
 
   public String checkViolationOfMaxLines(int lineNumbers, int maxLines) {

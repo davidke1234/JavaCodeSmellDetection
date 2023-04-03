@@ -1,6 +1,9 @@
 package Tests;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -35,6 +38,29 @@ public class TestSwissArmyKnife {
 	}
 	
 	//Integration Tests
+	@Test
+	public void testSwissArmyKnifeCheck2() {
+		DetailAST detailASTMock;
+		SwissArmyKnifeCheck mocked = mock(SwissArmyKnifeCheck.class);
+		
+		when(myMock.myMethod(arg1, arg2)).thenReturn(someValue);
+
+		//SwissArmyKnifeCheck swiss = new SwissArmyKnifeCheck();
+				
+		//swiss.visitToken(detailASTMock);
+		//((SwissArmyKnifeCheck) verify(detailASTMock, times(1))).visitToken(detailASTMock);
+		//MyClass myMock = mock(MyClass.class);
+
+		
+		/*
+		MyList myList = mock(MyList.class);
+    	myList.add(0, "");
+ 
+    	verify(myList, times(1)).add(0, "");
+	    */
+		
+	}
+	
 	//@Test
 	public void testSwissArmyKnifeCheck() {
 		SwissArmyKnifeCheck swiss = new SwissArmyKnifeCheck();
