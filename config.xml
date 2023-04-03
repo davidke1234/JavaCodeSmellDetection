@@ -7,6 +7,14 @@
   <property name="severity" value="error"/>
   <module name="FileTabCharacter"/> 
   <module name="TreeWalker">
+	 <module name="MultipleStringLiterals">
+	   <property name="allowedDuplicates" value="1"/>
+	   <property name="ignoreStringsRegexp" value='^(("")|(", "))$'/>
+	 </module>
+	 <module name="CyclomaticComplexity">
+   		<property name="max" value="1"/>
+   		<property name="tokens" value="LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, LITERAL_IF, LITERAL_SWITCH, LITERAL_CASE, LITERAL_CATCH, QUESTION, LAND, LOR"/>
+ 	</module>
           <!-- your standard Checks that come with Checkstyle -->
     <module name="UpperEll"/>
           <!-- your Check goes here -->
@@ -16,6 +24,7 @@
 	<module name="CodeSmell.SwissArmyKnifeCheck">
       <property name="maxLines" value="1"/>
 	  <property name="maxMethods" value="1"/>
+	  <property name="maxInterfaces" value="1"/>
     </module>
   </module>
 </module>
