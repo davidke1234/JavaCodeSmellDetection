@@ -9,7 +9,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class ShotgunCheck extends AbstractCheck
 {
   private static final int DEFAULT_MAX = 3;
-  private int max = DEFAULT_MAX;
+  public int max = DEFAULT_MAX;
   
   @Override
   public int[] getDefaultTokens()
@@ -19,7 +19,7 @@ public class ShotgunCheck extends AbstractCheck
 
   public void setMax(int limit)
   {
-    max = limit;
+    this.max = limit;
   }
   
   

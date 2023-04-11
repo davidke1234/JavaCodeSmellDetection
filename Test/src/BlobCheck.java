@@ -19,7 +19,7 @@ public class BlobCheck extends AbstractCheck
 
   public void setMaxMethods(int limit)
   {
-    max = limit;
+    this.max = limit;
   }
   
   public void setMaxImports(int limit)

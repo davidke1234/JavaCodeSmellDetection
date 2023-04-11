@@ -17,7 +17,7 @@ public class ShotgunCheck extends AbstractCheck
 
   public void setMax(int limit)
   {
-    max = limit;
+    this.max = limit;
   }
   
   

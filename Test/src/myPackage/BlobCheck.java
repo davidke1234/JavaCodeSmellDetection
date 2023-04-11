@@ -8,8 +8,8 @@ public class BlobCheck extends AbstractCheck
 {
   private static final int DEFAULT_MAX_METHODS = 30;
   private static final int DEFAULT_MAX_IMPORTS = 20;
-  private int max = DEFAULT_MAX_METHODS;
-  private int maxImports = DEFAULT_MAX_IMPORTS;
+  public int max = DEFAULT_MAX_METHODS;
+  public int maxImports = DEFAULT_MAX_IMPORTS;
 
   @Override
   public int[] getDefaultTokens()
@@ -19,12 +19,12 @@ public class BlobCheck extends AbstractCheck
 
   public void setMaxMethods(int limit)
   {
-    max = limit;
+    this.max = limit;
   }
   
   public void setMaxImports(int limit)
   {
-    maxImports = limit;
+    this.maxImports = limit;
   }
   
   @Override
