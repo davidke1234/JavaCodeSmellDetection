@@ -60,7 +60,7 @@ public class SwissArmyKnifeCheck extends AbstractCheck {
 	
 	    // report violation if limit is reached
 	    if (methodDefCount > this.maxMethods ){
-	      String message = "SwissArmyKnife issue. " + this.maxMethods + " methods are allowed";
+	      String message = "SwissArmyKnife issue.  Found " + methodDefCount + " methods, " + this.maxMethods + " methods are allowed";
 	      log(ast.getLineNo(), message);
 	    }  
     
@@ -79,7 +79,8 @@ public class SwissArmyKnifeCheck extends AbstractCheck {
 	  String message="";
 	  
 		if (lineNumbers > maxLines) {
-		   message = "SwissArmyKnife issue. " + maxLines + " lines are allowed";
+			//message = "SwissArmyKnife issue. " + maxLines + " lines are allowed";
+			message = "SwissArmyKnife issue.  Found " + lineNumbers + " lines, " + maxLines + " lines are allowed";
 		} 
 		else
 		{

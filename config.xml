@@ -12,7 +12,7 @@
 	   <property name="ignoreStringsRegexp" value='^(("")|(", "))$'/>
 	 </module>
 	 <module name="CyclomaticComplexity">
-   		<property name="max" value="1"/>
+   		<property name="max" value="8"/>
    		<property name="tokens" value="LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, LITERAL_IF, LITERAL_SWITCH, LITERAL_CASE, LITERAL_CATCH, QUESTION, LAND, LOR"/>
  	</module>
           <!-- your standard Checks that come with Checkstyle -->
@@ -22,9 +22,9 @@
       <property name="max" value="1"/>
     </module>
 	<module name="CodeSmell.SwissArmyKnifeCheck">
-      <property name="maxLines" value="1"/>
-	  <property name="maxMethods" value="1"/>
-	  <property name="maxInterfaces" value="1"/>
+      <property name="maxLines" value="2"/>
+	  <property name="maxMethods" value="10"/>
+	  <property name="maxInterfaces" value="4"/>
     </module>
   </module>
 </module>
