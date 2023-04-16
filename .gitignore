@@ -1,7 +1,7 @@
 ﻿################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
-
+bin/
 /.vs/slnx.sqlite
 /.vs/582Project/v17/.wsuo
 /.vs/582Project/v16/.suo

@@ -28,22 +28,29 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class TestSwissArmyKnife {
 
 	//Black box testing
-	@Test
+	/* @Test
 	public void testWholeShebang() {
 		SwissArmyKnifeCheck swiss = new SwissArmyKnifeCheck();
 		String message = swiss.checkViolationOfMaxLines(1, 2);
 		assertTrue(message == "No SwissArmyKnife issues with line numbers.");
 	}
-	
+	*/
 	
 	//*** White box testing ***
 	
 	//Unit Tests
 	@Test
-	public void testCheckViolationOfMaxLines_isValid() {
+	public void testCheckViolationOfMaxLines_returnsNoIssue() {
 		SwissArmyKnifeCheck swiss = new SwissArmyKnifeCheck();
 		String message = swiss.checkViolationOfMaxLines(1, 2);
 		assertTrue(message == "No SwissArmyKnife issues with line numbers.");
+	}
+	
+	@Test
+	public void testCheckViolationOfMaxLines_returnsIssue() {
+		SwissArmyKnifeCheck swiss = new SwissArmyKnifeCheck();
+		String message = swiss.checkViolationOfMaxLines(5, 2);
+		assertTrue(message.contains("SwissArmyKnife issue."));	                                             
 	}
 	
 	//Integration Tests

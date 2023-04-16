@@ -40,11 +40,16 @@ public class TestDuplicateCode {
 	
 	@Test
 	public void testHasDupes_ReturnsTrue() {
+		//Arrange
 		DuplicateCodeCheck dupes = new DuplicateCodeCheck();
 		ArrayList<String> lines = new ArrayList<String>();
 		lines.add("String x = Hello World");
 		lines.add("String x = Hello World");
+
+		//Act
 		boolean result = dupes.hasDupes(lines);
+		
+		//Assert
 		assertTrue(result);
 	}
 
