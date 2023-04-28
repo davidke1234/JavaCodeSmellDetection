@@ -46,7 +46,7 @@ public class SwissArmyKnifeCheck extends AbstractCheck {
 	    int interfaceDefCount = objCompUnit.getChildCount(TokenTypes.INTERFACE_DEF);
 	    if (interfaceDefCount > this.maxInterfaces) {
 	    	 String message = "SwissArmyKnife issue. Too many interfaces: " + interfaceDefCount + " found, " + this.maxInterfaces + " interfaces are allowed.";
-	         log(ast.getLineNo(), message);
+	    	 logMe(ast.getLineNo(), message);
 	    }     
     }
     
@@ -61,7 +61,7 @@ public class SwissArmyKnifeCheck extends AbstractCheck {
 	    // report violation if limit is reached
 	    if (methodDefCount > this.maxMethods ){
 	      String message = "SwissArmyKnife issue.  Found " + methodDefCount + " methods, " + this.maxMethods + " methods are allowed";
-	      log(ast.getLineNo(), message);
+	      logMe(ast.getLineNo(), message);
 	    }  
     
 	    //check number of lines
@@ -69,12 +69,21 @@ public class SwissArmyKnifeCheck extends AbstractCheck {
 	      
 	    // report violation if limit is reached
 	    String message = checkViolationOfMaxLines(lineNumbers, this.maxLines);
-	    log(ast.getLineNo(), message);
+	    logMe(ast.getLineNo(), message);
     }
     else
-    	log(ast.getLineNo(), "objblock is null");    
+    	logMe(ast.getLineNo(), "objblock is null");    
   }
 
+  public void logMe(int logNo, String logItem) {
+	  try {
+		  log(logNo, logItem); 
+      }
+      catch (Exception ex) {
+    	  System.out.print(logNo + " " + logItem);
+      }
+  }
+  
   public String checkViolationOfMaxLines(int lineNumbers, int maxLines) {
 	  String message="";
 	  

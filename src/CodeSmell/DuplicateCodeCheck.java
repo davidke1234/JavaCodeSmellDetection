@@ -42,9 +42,9 @@ public class DuplicateCodeCheck extends AbstractCheck {
 
 		boolean hasDupes = hasDupes(lines);
 		if (hasDupes)
-			log(1, "duplicate code found: " + lines.size());
+			logMe(1, "duplicate code found: " + lines.size());
 		else
-			log(1, "No duplicate code found: " + lines.size());
+			logMe(1, "No duplicate code found: " + lines.size());
 	}
 
 	public boolean hasDupes(ArrayList<String> lines) {
@@ -64,6 +64,15 @@ public class DuplicateCodeCheck extends AbstractCheck {
 
 		return false;
 	}
+	
+	public void logMe(int logNo, String logItem) {
+		  try {
+			  logMe(logNo, logItem); 
+	      }
+	      catch (Exception ex) {
+	    	  System.out.print(logNo + " " + logItem);
+	      }
+	  }
 
 	@Override
 	public int[] getAcceptableTokens() {

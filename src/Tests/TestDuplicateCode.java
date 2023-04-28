@@ -9,47 +9,40 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import CodeSmell.DuplicateCodeCheck;
-import org.easymock.*;
-import org.powermock.api.easymock.PowerMock;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 import java.io.File;
 import java.io.FileNotFoundException;
-
 
 public class TestDuplicateCode {
 
 	@Test
 	public void testDuplicateCodeCheck() {
-	// update ast: replace ">" with "&gt;" and "<" with "&lt;"
-	DuplicateCodeCheck dupes = new DuplicateCodeCheck();
-	
-	try {
-		File file = new File("CheckJava_SampleAST1.txt");
-		  Scanner myReader = new Scanner(file);
-		  while (myReader.hasNextLine()) {
-		    String data = myReader.nextLine();
-		    System.out.println(data);
-		  }
-		  myReader.close();
+		// update ast: replace ">" with "&gt;" and "<" with "&lt;"
+		DuplicateCodeCheck dupes = new DuplicateCodeCheck();
+
+		try {
+			File file = new File("CheckJava_SampleAST1.txt");
+			Scanner myReader = new Scanner(file);
+			while (myReader.hasNextLine()) {
+				String data = myReader.nextLine();
+				System.out.println(data);
+			}
+			myReader.close();
 		} catch (FileNotFoundException e) {
-		  System.out.println("An error occurred.");
-		  e.printStackTrace();
+			System.out.println("An error occurred.");
+			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void testHasDupes_ReturnsTrue() {
-		//Arrange
+
 		DuplicateCodeCheck dupes = new DuplicateCodeCheck();
 		ArrayList<String> lines = new ArrayList<String>();
 		lines.add("String x = Hello World");
 		lines.add("String x = Hello World");
 
-		//Act
 		boolean result = dupes.hasDupes(lines);
-		
-		//Assert
+
 		assertTrue(result);
 	}
 

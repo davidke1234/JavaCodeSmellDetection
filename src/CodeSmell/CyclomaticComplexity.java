@@ -39,18 +39,11 @@ public class CyclomaticComplexity {
    private void fun2(){ String x="hi"; }
    private void fun3(){ String x="hi"; }
    private void fun4(){ String x="hi"; }
+   private void fun5(){ String x="hi"; }
+   private void fun6(){ String x="hi"; }
+   private void fun7(){ String x="hi"; }
+   private void fun8(){ String x="hi"; }
    
-   private void fun5(){ Constant x="Jones"; }
-	private void fun6(){ Constant x="Jones"; }
-	private void fun7(){ Constant x="Jones"; }
-	private void fun8(){ Constant x="Jones"; }
-	private void fun9(){ Constant x="Jones"; }
-	private void fun10(){ Constant x="Jones"; }
-	private void fun11(){ Constant x="Jones"; }
-	private void fun12(){ Constant x="Jones"; }
-	private void fun13(){ Constant x="Jones"; }
-	private void fun14(){ Constant x="Jones"; }
-	private void fun15(){ Constant x="Jones"; }
-
+   
  }
  
