@@ -21,10 +21,5 @@
     <module name="CodeSmell.DuplicateCodeCheck">
       <property name="max" value="1"/>
     </module>
-	<module name="CodeSmell.SwissArmyKnifeCheck">
-      <property name="maxLines" value="2"/>
-	  <property name="maxMethods" value="10"/>
-	  <property name="maxInterfaces" value="4"/>
-    </module>
   </module>
 </module>

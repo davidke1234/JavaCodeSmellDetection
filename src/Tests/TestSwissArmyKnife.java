@@ -50,7 +50,7 @@ public class TestSwissArmyKnife {
 	      myReader.close();	
 					
 		detailAST.setText(ast);  
-		System.out.print("result: " + detailAST);
+		//System.out.print("result: " + detailAST);
 		
 		final SwissArmyKnifeCheck checker = new SwissArmyKnifeCheck();
 		checker.visitToken(detailAST);
@@ -59,13 +59,12 @@ public class TestSwissArmyKnife {
 	}
 
       		
-	//@Test
+	@Test
 	public void testAllChecks() throws Exception {
 		 try
 	     {
-			 ProcessCmd("Processing Check_dupConstants.java...","java -classpath CodeSmell.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c config.xml Check_dupConstants.java");
-			 ProcessCmd("Processing CyclomaticComplexity.java...","java -classpath CodeSmell.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c config.xml CyclomaticComplexity.java");
-			 ProcessCmd("Processing CheckInterfaces.java...","java -classpath CodeSmell.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c config.xml CheckInterfaces.java");		 
+			 ProcessCmd("Processing CyclomaticComplexity.java...","java -classpath SwissArmyKnifeCheck.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c configSwissArmy.xml CyclomaticComplexity.java");
+			 ProcessCmd("Processing CheckInterfaces.java...","java -classpath SwissArmyKnifeCheck.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c configSwissArmy.xml CheckInterfaces.java");		 
 	     }
 		 catch (Exception ex)
 		 {
