@@ -65,13 +65,27 @@ public class DuplicateCodeCheck extends AbstractCheck {
 		return false;
 	}
 	
-	public void logMe(int logNo, String logItem) {
+	 public String logMe(int logNo, String logItem) {
+		  String message = "";
+	  
+		  if (logNo <= 0)
+			  message = "Param logNo is invalid";
+		  if (logItem.length() == 0)
+			  message = "Param logItem is invalid";
+		  
+		  if (message.length() == 0)
+		  {
 		  try {
-			  logMe(logNo, logItem); 
+			  log(logNo, logItem); 
 	      }
 	      catch (Exception ex) {
-	    	  System.out.print(logNo + " " + logItem);
-	      }
+	    	  //For unit tests
+	    	  message="Failed to log: " + logNo + ", " + logItem + ", ";
+		    	  System.out.print(message + ex.getMessage());
+		      }
+		  }
+		  
+		  return message;
 	  }
 
 	@Override

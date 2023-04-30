@@ -1,10 +1,18 @@
 package CodeSmell;
 
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.io.File;
+import java.util.SortedSet;
 
-public class SwissArmyKnifeCheck extends AbstractCheck {
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Violation;
+
+public class SwissArmyKnifeCheck extends AbstractCheck implements FileSetCheck {
   private static final int DEFAULT_LINE_NUMBERS = 50;
   private static final int DEFAULT_MAX_METHODS = 5;
   private static final int DEFAULT_MAX_INTERFACES = 1;
@@ -72,16 +80,30 @@ public class SwissArmyKnifeCheck extends AbstractCheck {
 	    logMe(ast.getLineNo(), message);
     }
     else
-    	logMe(ast.getLineNo(), "objblock is null");    
+    	logMe(ast.getLineNo(), "The value of objblock is null");    
   }
 
-  public void logMe(int logNo, String logItem) {
-	  try {
-		  log(logNo, logItem); 
-      }
-      catch (Exception ex) {
-    	  System.out.print(logNo + " " + logItem);
-      }
+  public String logMe(int logNo, String logItem) {
+	  String message = "";
+	  
+	  if (logNo <= 0)
+		  message = "Param logNo is invalid";
+	  if (logItem.length() == 0)
+		  message = "Param logItem is invalid";
+	  
+	  if (message.length() == 0)
+	  {
+		  try {
+			  log(logNo, logItem); 
+	      }
+	      catch (Exception ex) {
+	    	  //For unit tests
+	    	  message="Failed to log: " + logNo + ", " + logItem + ", ";
+	    	  System.out.print(message + ex.getMessage());
+	      }
+	  }
+	  
+	  return message;
   }
   
   public String checkViolationOfMaxLines(int lineNumbers, int maxLines) {
@@ -109,5 +131,29 @@ public class SwissArmyKnifeCheck extends AbstractCheck {
 	public int[] getRequiredTokens() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void beginProcessing(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void finishProcessing() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public SortedSet<Violation> process(File arg0, FileText arg1) throws CheckstyleException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setMessageDispatcher(MessageDispatcher arg0) {
+		// TODO Auto-generated method stub
+		
 	}
  }

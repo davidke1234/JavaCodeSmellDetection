@@ -1,9 +1,8 @@
-package CodeSmell;
+package Tests;
  
-public class CyclomaticComplexity {
+public class CyclomaticComplexity3 {
    boolean a;
-// Cyclomatic Complexity = 11
-   int b, c;
+   int b=0, c=0;
    boolean g;
    boolean f;
    boolean e;
@@ -18,7 +17,7 @@ public class CyclomaticComplexity {
        } while (d);
      } else if (d == f) {
        while (c > 0) { // 4, while
-         fun();
+         fun1();
        }
        do { // 5, do-while
          fun1();
@@ -32,18 +31,22 @@ public class CyclomaticComplexity {
        do { // 5, do-while
            fun4();
          } while (g);
+	   do { // 5, do-while
+		 fun5();
+		} while (g);
      }
    }
-   private void fun(){ String x="hi"; }
-   private void fun1(){ String x="hi"; }
-   private void fun2(){ String x="hi"; }
-   private void fun3(){ String x="hi"; }
-   private void fun4(){ String x="hi"; }
-   private void fun5(){ String x="hi"; }
-   private void fun6(){ String x="hi"; }
-   private void fun7(){ String x="hi"; }
-   private void fun8(){ String x="hi"; }
-   
-   
+	private void fun(){ String x="hi"; }
+	private void fun1(){ String x="hi"; }
+	private void fun2(){ String x="hi"; }
+	private void fun3(){ String x="hi"; }
+	private void fun4(){ String x="hi"; }
+
+	private void fun5(){ String x="Jones"; }
+	private void fun6(){ String x="Jones"; }
+	private void fun7(){ String x="Jones"; }
+	private void fun8(){ String x="Jones"; }
+	private void fun9(){ String x="Jones"; }
+	private void fun10(){ String x="Jones"; }
  }
  

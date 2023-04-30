@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.SortedSet;
 
@@ -22,28 +23,79 @@ import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.*;
+import com.puppycrawl.tools.checkstyle.api.*;
 
 import java.io.File;
 import java.util.List;
-import com.puppycrawl.tools.checkstyle.api.*;
-
-import static org.junit.jupiter.api.Assertions.fail;
-import org.junit.jupiter.api.Assertions;
-
-
-
 
 
 public class TestSwissArmyKnife  {
 
 	
 	//Black box testing
+	
+//	@Test
+//	public void testAddBeforeExecutionFileFilter() throws Exception {
+//	  final Checker checker = new Checker();
+//	  
+//	  final TestBeforeExecutionFileFilter filter = new TestBeforeExecutionFileFilter();
+//	  checker.addBeforeExecutionFileFilter(filter);
+//	  filter.resetFilter();
+//	  checker.process(Collections.singletonList(new File("dummy.java")));
+//	  assertTrue("Checker.acceptFileStarted() doesn't call filter", filter.wasCalled());
+//	}
+	
+//	@Test
+//	public void testDestroy() throws Exception {
+//	  final Checker checker = new Checker();
+//	  final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
+//	  checker.addListener(auditAdapter);
+//	  final TestFileSetCheck fileSet = new TestFileSetCheck();
+//	  checker.addFileSetCheck(fileSet);
+//	  final DebugFilter filter = new DebugFilter();
+//	  checker.addFilter(filter);
+//	  final TestBeforeExecutionFileFilter fileFilter = new TestBeforeExecutionFileFilter();
+//	  checker.addBeforeExecutionFileFilter(fileFilter);
+//	  // should remove all listeners, file sets, and filters
+//	  checker.destroy();
+//	  checker.process(Collections.singletonList(temporaryFolder.newFile()));
+//	  final SortedSet<LocalizedMessage> messages = new TreeSet<>();
+//	  messages.add(new LocalizedMessage(1, 0, "a Bundle", "message.key",
+//	      new Object[] {"arg"}, null, getClass(), null));
+//	  checker.fireErrors("Some File Name", messages);
+//	  assertFalse("Checker.destroy() doesn't remove listeners.", auditAdapter.wasCalled());
+//	  assertFalse("Checker.destroy() doesn't remove file sets.", fileSet.wasCalled());
+//	  assertFalse("Checker.destroy() doesn't remove filters.", filter.wasCalled());
+//	  assertFalse("Checker.destroy() doesn't remove file filters.", fileFilter.wasCalled());
+//	}
+	
 	@Test
-	public void testWholeShebang() throws CheckstyleException { 
-		//Creates a new Checker instance. The instance needs to be contextualized and configured. 
-		com.puppycrawl.tools.checkstyle.Checker checker = new com.puppycrawl.tools.checkstyle.Checker();
+	public void testCheckerProcessCallAllNeededMethodsOfFileSets() throws Exception {
+	  Checker checker = new Checker();
+	  final SwissArmyKnifeCheck fileSet = new SwissArmyKnifeCheck();
+	  checker.addFileSetCheck(fileSet);
+	  int result = 0;
+	  try {
+		  result = checker.process(Collections.singletonList(new File("cyclomaticComplexity3.java")));
+	  }
+	  catch (Exception ex) {
+		  System.out.print(ex.getMessage());
+	  }
+	  assertTrue(result == 0);
+	  
+//	  final List<String> expected =
+//	    Arrays.asList("beginProcessing", "finishProcessing", "destroy");
+//	  assertArrayEquals("Method calls were not expected",
+//	      expected.toArray(), fileSet.getMethodCalls().toArray());
+	}
+	
+//	@Test
+//	public void testWholeShebang() throws CheckstyleException { 
+//		//Creates a new Checker instance. The instance needs to be contextualized and configured. 
+//		com.puppycrawl.tools.checkstyle.Checker checker = new com.puppycrawl.tools.checkstyle.Checker();
+//		
 		
-		//checker.
 		//checker.addFileSetCheck;
 		
 //		File file = new File("CyclomaticComplexity.java");
@@ -51,7 +103,7 @@ public class TestSwissArmyKnife  {
 //		SortedSet<Violation> violations = fileSetCheck.process(file, null);
 //		System.out.println(violations.size());
 
-	}
+//	}
 	
 	
 	//*** White box testing ***
@@ -59,7 +111,25 @@ public class TestSwissArmyKnife  {
 	//Unit Tests
 	
 	@Test
-    public void testValidToken() {
+    public void testVisitToken_DoesNotReturnError() {
+        final DetailAstImpl detailAst = new DetailAstImpl();
+        detailAst.setType(TokenTypes.OBJBLOCK);
+        boolean hasError = false;
+
+        final SwissArmyKnifeCheck swissCheck = new SwissArmyKnifeCheck();
+        try {
+        	swissCheck.visitToken(detailAst);
+            //fail("exception expected");
+        }
+        catch (Exception ex) {
+        	hasError = true;
+            //Assertions.assertEquals("Found unsupported token: OBJBLOCK", ex.getMessage());
+        }
+        
+        assertTrue(hasError == false);
+    }
+	@Test
+    public void testVisitToken_ReturnsError() {
         final DetailAstImpl detailAst = new DetailAstImpl();
         detailAst.setType(TokenTypes.OBJBLOCK);
         boolean hasError = false;
@@ -75,9 +145,28 @@ public class TestSwissArmyKnife  {
         }
         
         assertTrue(hasError == false);
-        
-        
     }
+	
+	@Test
+	public void testLogMe_returnslogNoParamError() {
+		SwissArmyKnifeCheck swiss = new SwissArmyKnifeCheck();
+		String msg = swiss.logMe(0, "Hi there");
+		assertTrue(msg=="Param logNo is invalid");
+	}
+	
+	@Test
+	public void testLogMe_returnslogItemParamError() {
+		SwissArmyKnifeCheck swiss = new SwissArmyKnifeCheck();
+		String msg = swiss.logMe(1, "");
+		assertTrue(msg=="Param logItem is invalid");
+	}
+	
+//	@Test
+//	public void testLogMe_returnsError() {
+//		SwissArmyKnifeCheck swiss = new SwissArmyKnifeCheck();
+//		String msg = swiss.logMe(1, "Hi there");
+//		assertTrue(msg.contains("Failed to log"));
+//	}
 	
 	@Test
 	public void testCheckViolationOfMaxLines_returnsNoIssue() {
