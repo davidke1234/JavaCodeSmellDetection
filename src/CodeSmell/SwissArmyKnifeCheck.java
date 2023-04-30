@@ -159,8 +159,19 @@ public class SwissArmyKnifeCheck extends AbstractCheck implements FileSetCheck {
 		
 	}
 
-	public SortedSet<Violation> process(File file) {
-		final SortedSet<Violation> result = new TreeSet<>(super.getViolations());
-		return result;
+	public int process(List<File> filesToProcess) {
+		
+		return super.getViolations().size();
 	}
+
+	public void addFileSetCheck() {
+		// TODO Auto-generated method stub
+		
+	}
+
+//	public SortedSet<Violation> process(File file) {
+//		//return super.
+////		final SortedSet<Violation> result = new TreeSet<>(super.getViolations());
+////		return result;
+//	}
  }
