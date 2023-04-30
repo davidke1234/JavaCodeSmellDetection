@@ -7,6 +7,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -25,16 +27,15 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.*;
 import com.puppycrawl.tools.checkstyle.api.*;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 import java.io.File;
 import java.util.List;
 
+public class TestSwissArmyKnife {
 
-public class TestSwissArmyKnife  {
+	// Black box testing
 
-	
-	//Black box testing
-	
 //	@Test
 //	public void testAddBeforeExecutionFileFilter() throws Exception {
 //	  final Checker checker = new Checker();
@@ -45,7 +46,7 @@ public class TestSwissArmyKnife  {
 //	  checker.process(Collections.singletonList(new File("dummy.java")));
 //	  assertTrue("Checker.acceptFileStarted() doesn't call filter", filter.wasCalled());
 //	}
-	
+
 //	@Test
 //	public void testDestroy() throws Exception {
 //	  final Checker checker = new Checker();
@@ -69,130 +70,173 @@ public class TestSwissArmyKnife  {
 //	  assertFalse("Checker.destroy() doesn't remove filters.", filter.wasCalled());
 //	  assertFalse("Checker.destroy() doesn't remove file filters.", fileFilter.wasCalled());
 //	}
-	
+
 	@Test
-	public void testCheckerProcessCallAllNeededMethodsOfFileSets() throws Exception {
-	  Checker checker = new Checker();
-	  final SwissArmyKnifeCheck fileSet = new SwissArmyKnifeCheck();
-	  checker.addFileSetCheck(fileSet);
-	  int result = 0;
-	  try {
-		  result = checker.process(Collections.singletonList(new File("cyclomaticComplexity3.java")));
-	  }
-	  catch (Exception ex) {
-		  System.out.print(ex.getMessage());
-	  }
-	  assertTrue(result == 0);
-	  
-//	  final List<String> expected =
-//	    Arrays.asList("beginProcessing", "finishProcessing", "destroy");
-//	  assertArrayEquals("Method calls were not expected",
-//	      expected.toArray(), fileSet.getMethodCalls().toArray());
+	public void testCheckerSwissArmyKnife() throws Exception {
+		Checker checker = new Checker();
+		final SwissArmyKnifeCheck fileSet = new SwissArmyKnifeCheck();
+		File file = new File("cyclomaticComplexity3.java");
+		
+//        Scanner myReader = new Scanner(file);
+//	    while (myReader.hasNextLine()) {
+//	        String data = myReader.nextLine();
+//	        System.out.println(data);
+//	      }
+//	      myReader.close();
+		
+		
+		//System.out.print(file..getMessage());
+		checker.addFileSetCheck(fileSet);
+		int result = 0;
+		SortedSet<Violation> violations = null;
+
+		try {
+			violations = fileSet.process(file);
+		} catch (Exception ex) {
+			System.out.print(ex.getMessage());
+		}
+
+		// TODO: check for violations
+		assertTrue(violations.size() > 0);
+
 	}
 	
+	@Test
+	public void testCheckerSwissArmyKnifeViaCMD() throws Exception {
+		// Execute command
+		String command = "cmd /c start cmd.exe";
+		Process child = Runtime.getRuntime().exec(command);
+	
+		// Get output stream to write from it
+		OutputStream out = child.getOutputStream();
+	
+		System.out.print("cd C:/ /r/n".getBytes());
+		out.flush();
+		System.out.print("dir /r/n".getBytes());
+		out.close();
+	}
+	
+	@Test
+	public void testExecute() throws Exception {
+	 try
+     {
+         // Command to create an external process
+         String command = "D:\\WSU\\582 Testing\\Project\\582Project\\blackBoxTests.cmd";
+
+         // Running the above command
+         Runtime run  = Runtime.getRuntime();
+         Process proc = run.exec(command);
+     }
+
+     catch (IOException e)
+     {
+         e.printStackTrace();
+     }
+ }
+
 //	@Test
 //	public void testWholeShebang() throws CheckstyleException { 
 //		//Creates a new Checker instance. The instance needs to be contextualized and configured. 
 //		com.puppycrawl.tools.checkstyle.Checker checker = new com.puppycrawl.tools.checkstyle.Checker();
 //		
-		
-		//checker.addFileSetCheck;
-		
+
+	// checker.addFileSetCheck;
+
 //		File file = new File("CyclomaticComplexity.java");
 //		FileSetCheck fileSetCheck;
 //		SortedSet<Violation> violations = fileSetCheck.process(file, null);
 //		System.out.println(violations.size());
 
 //	}
-	
-	
-	//*** White box testing ***
-	
-	//Unit Tests
-	
-	@Test
-    public void testVisitToken_DoesNotReturnError() {
-        final DetailAstImpl detailAst = new DetailAstImpl();
-        detailAst.setType(TokenTypes.OBJBLOCK);
-        boolean hasError = false;
 
-        final SwissArmyKnifeCheck swissCheck = new SwissArmyKnifeCheck();
-        try {
-        	swissCheck.visitToken(detailAst);
-            //fail("exception expected");
-        }
-        catch (Exception ex) {
-        	hasError = true;
-            //Assertions.assertEquals("Found unsupported token: OBJBLOCK", ex.getMessage());
-        }
-        
-        assertTrue(hasError == false);
-    }
-	@Test
-    public void testVisitToken_ReturnsError() {
-        final DetailAstImpl detailAst = new DetailAstImpl();
-        detailAst.setType(TokenTypes.OBJBLOCK);
-        boolean hasError = false;
+	// *** White box testing ***
 
-        final SwissArmyKnifeCheck swissCheck = new SwissArmyKnifeCheck();
-        try {
-        	swissCheck.visitToken(detailAst);
-            //fail("exception expected");
-        }
-        catch (IllegalArgumentException ex) {
-        	hasError = true;
-            //Assertions.assertEquals("Found unsupported token: OBJBLOCK", ex.getMessage());
-        }
-        
-        assertTrue(hasError == false);
-    }
-	
+	// Unit Tests
+
+	@Test
+	public void testVisitToken_DoesNotReturnError() {
+		final DetailAstImpl detailAst = new DetailAstImpl();
+		detailAst.setType(TokenTypes.OBJBLOCK);
+		boolean hasError = false;
+
+		final SwissArmyKnifeCheck swissCheck = new SwissArmyKnifeCheck();
+		try {
+			swissCheck.visitToken(detailAst);
+			// fail("exception expected");
+		} catch (Exception ex) {
+			hasError = true;
+			// Assertions.assertEquals("Found unsupported token: OBJBLOCK",
+			// ex.getMessage());
+		}
+
+		assertTrue(hasError == false);
+	}
+
+	@Test
+	public void testVisitToken_ReturnsError() {
+		final DetailAstImpl detailAst = new DetailAstImpl();
+		detailAst.setType(TokenTypes.OBJBLOCK);
+		boolean hasError = false;
+
+		final SwissArmyKnifeCheck swissCheck = new SwissArmyKnifeCheck();
+		try {
+			swissCheck.visitToken(detailAst);
+			// fail("exception expected");
+		} catch (IllegalArgumentException ex) {
+			hasError = true;
+			// Assertions.assertEquals("Found unsupported token: OBJBLOCK",
+			// ex.getMessage());
+		}
+
+		assertTrue(hasError == false);
+	}
+
 	@Test
 	public void testLogMe_returnslogNoParamError() {
 		SwissArmyKnifeCheck swiss = new SwissArmyKnifeCheck();
 		String msg = swiss.logMe(0, "Hi there");
-		assertTrue(msg=="Param logNo is invalid");
+		assertTrue(msg == "Param logNo is invalid");
 	}
-	
+
 	@Test
 	public void testLogMe_returnslogItemParamError() {
 		SwissArmyKnifeCheck swiss = new SwissArmyKnifeCheck();
 		String msg = swiss.logMe(1, "");
-		assertTrue(msg=="Param logItem is invalid");
+		assertTrue(msg == "Param logItem is invalid");
 	}
-	
+
 //	@Test
 //	public void testLogMe_returnsError() {
 //		SwissArmyKnifeCheck swiss = new SwissArmyKnifeCheck();
 //		String msg = swiss.logMe(1, "Hi there");
 //		assertTrue(msg.contains("Failed to log"));
 //	}
-	
+
 	@Test
 	public void testCheckViolationOfMaxLines_returnsNoIssue() {
 		SwissArmyKnifeCheck swiss = new SwissArmyKnifeCheck();
 		String message = swiss.checkViolationOfMaxLines(1, 2);
 		assertTrue(message == "No SwissArmyKnife issues with line numbers.");
 	}
-	
+
 	@Test
 	public void testCheckViolationOfMaxLines_returnsIssue() {
 		SwissArmyKnifeCheck swiss = new SwissArmyKnifeCheck();
 		String message = swiss.checkViolationOfMaxLines(5, 2);
-		assertTrue(message.contains("SwissArmyKnife issue."));	                                             
+		assertTrue(message.contains("SwissArmyKnife issue."));
 	}
-	
-	//Integration Tests
-	//@Test
-	//public void testSwissArmyKnifeCheck2() {
-		//DetailAST ast = new DetailAST.class.
-		//SwissArmyKnifeCheck swiss = new SwissArmyKnifeCheck();
-		//SwissArmyKnifeCheck spy = Mockito.spy(swiss);	
-		//Mockito.doNothing().when(spy).visitToken(ast);
-    	//verify(swiss, times(1)).visitToken(ast);
-	//}
-	
-	//@Test
+
+	// Integration Tests
+	// @Test
+	// public void testSwissArmyKnifeCheck2() {
+	// DetailAST ast = new DetailAST.class.
+	// SwissArmyKnifeCheck swiss = new SwissArmyKnifeCheck();
+	// SwissArmyKnifeCheck spy = Mockito.spy(swiss);
+	// Mockito.doNothing().when(spy).visitToken(ast);
+	// verify(swiss, times(1)).visitToken(ast);
+	// }
+
+	// @Test
 //	public void testSwissArmyKnifeCheck() {
 //		SwissArmyKnifeCheck swiss = new SwissArmyKnifeCheck();
 //	
@@ -259,9 +303,4 @@ public class TestSwissArmyKnife  {
 //		swiss.visitToken(ast);
 //	}
 
-
-	
-
-
 }
-

@@ -1,7 +1,9 @@
 package CodeSmell;
 
 import java.io.File;
+import java.util.List;
 import java.util.SortedSet;
+import java.util.TreeSet;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -146,14 +148,19 @@ public class SwissArmyKnifeCheck extends AbstractCheck implements FileSetCheck {
 	}
 
 	@Override
-	public SortedSet<Violation> process(File arg0, FileText arg1) throws CheckstyleException {
-		// TODO Auto-generated method stub
-		return null;
+	public SortedSet<Violation> process(File arg0, FileText arg1) throws CheckstyleException {	
+		final SortedSet<Violation> result = new TreeSet<>(super.getViolations());
+		return result;
 	}
 
 	@Override
 	public void setMessageDispatcher(MessageDispatcher arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public SortedSet<Violation> process(File file) {
+		final SortedSet<Violation> result = new TreeSet<>(super.getViolations());
+		return result;
 	}
  }
