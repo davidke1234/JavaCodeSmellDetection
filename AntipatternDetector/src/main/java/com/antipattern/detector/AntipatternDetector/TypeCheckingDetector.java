@@ -1,8 +1,10 @@
 package com.antipattern.detector.AntipatternDetector;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
 
 public class TypeCheckingDetector extends AbstractCheck {
 
@@ -11,8 +13,10 @@ public class TypeCheckingDetector extends AbstractCheck {
         return new int[]{TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE};
     }
 
+    
     @Override
     public void visitToken(DetailAST ast) {
+    	//log(ast,"hello its me");
         DetailAST expression = ast.findFirstToken(TokenTypes.EXPR);
         if (expression != null) {
             DetailAST dot = expression.findFirstToken(TokenTypes.DOT);
@@ -23,6 +27,7 @@ public class TypeCheckingDetector extends AbstractCheck {
                     if (ident != null && "getClass".equals(ident.getText()))
                         log(ast, "Type checking anti-pattern detected: using 'getClass()' for type checking");
                 }
+                
             }
         }
     }
@@ -31,6 +36,7 @@ public class TypeCheckingDetector extends AbstractCheck {
 	public int[] getAcceptableTokens() {
 		// TODO Auto-generated method stub
 		return null;
+		
 	}
 
 	@Override

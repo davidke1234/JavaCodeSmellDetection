@@ -1,13 +1,16 @@
 package com.antipattern.detector.AntipatternDetector;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+
+
+
 import java.util.function.Supplier;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class SpaghettiCodeDetector extends AbstractCheck {
-    private static final int MAX_METHOD_LENGTH = 50;
+    static final int MAX_METHOD_LENGTH = 50;
     private static final int MAX_NESTING_DEPTH = 4;
 
     @Override
@@ -34,6 +37,8 @@ public class SpaghettiCodeDetector extends AbstractCheck {
                 log(ast, "Spaghetti code detected: too much nesting");
             }
         }
+        
+        
     }
 
     int getNestingDepth(DetailAST ast) {
@@ -46,6 +51,7 @@ public class SpaghettiCodeDetector extends AbstractCheck {
         }
         return depth;
     }
+    
 
 	@Override
 	public int[] getAcceptableTokens() {

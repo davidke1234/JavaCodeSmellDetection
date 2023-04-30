@@ -10,6 +10,7 @@ import com.antipattern.detector.AntipatternDetector.*;
 
 public class ConcreteSpaghettiCodeDetector extends SpaghettiCodeDetector {
 
+	
 	// No additional functionality needed for testing purposes.
 //java -classpath MyCheckstyle.jar;checkstyle-10.4-all.jar com.puppycrawl.tools.checkstyle.Main -c config.xml TypeCheckingDetector.java
 	@Override
@@ -51,8 +52,12 @@ public class ConcreteSpaghettiCodeDetector extends SpaghettiCodeDetector {
 				log(ast, "Nested if statement found");
 				parent = parent.getParent();
 			}
+			
+			
 		}
 		// Add more code to check for other types of spaghetti code
 	}
+	
 
+	
 }

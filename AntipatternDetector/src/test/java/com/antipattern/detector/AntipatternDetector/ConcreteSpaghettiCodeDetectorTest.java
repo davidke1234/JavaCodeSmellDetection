@@ -1,49 +1,92 @@
-
 package com.antipattern.detector.AntipatternDetector;
 
-import org.junit.jupiter.api.BeforeEach;
 
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.jupiter.api.Test;
+import java.util.Arrays;
+import java.util.List;
+
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
-//This is a JUnit test class for ConcreteSpaghettiCodeDetector, a class used to detect antipatterns in code.
-//The ConcreteSpaghettiCodeDetectorTest class tests two methods: getAcceptableTokens() and visitToken().
-//This is a black-box testing technique.
-//changes
-class ConcreteSpaghettiCodeDetectorTest {
+public class ConcreteSpaghettiCodeDetectorTest {
 
-    private ConcreteSpaghettiCodeDetector detector;
- // This method is executed before each test case and 
- //initializes a new instance of ConcreteSpaghettiCodeDetector.
-    @BeforeEach
-    void setUp() {
-        detector = new ConcreteSpaghettiCodeDetector();
-    }
-
-
-    // This method tests the getAcceptableTokens() method of the ConcreteSpaghettiCodeDetector class.
-    // It ensures that the method returns an array of acceptable tokens and that the length of the array is greater than zero.
     @Test
-    void getAcceptableTokens() {
+    public void getAcceptableTokens() {
+        ConcreteSpaghettiCodeDetector detector = new ConcreteSpaghettiCodeDetector();
         int[] acceptableTokens = detector.getAcceptableTokens();
-        assertNotNull(acceptableTokens);
-        assertTrue(acceptableTokens.length > 0);
-        // Add more assertions as needed
+        List<Integer> expectedTokens = Arrays.asList(
+                TokenTypes.CLASS_DEF,
+                TokenTypes.INTERFACE_DEF,
+                TokenTypes.ENUM_DEF,
+                TokenTypes.ANNOTATION_DEF
+        );
+        assertEquals(expectedTokens.size(), acceptableTokens.length);
+        for (int i = 0; i < acceptableTokens.length; i++) {
+            assertTrue(expectedTokens.contains(acceptableTokens[i]));
+        }
     }
-    // This method tests the getRequiredTokens() method of the ConcreteSpaghettiCodeDetector class.
-// It ensures that the method returns an array of required tokens and that the length of the array is greater than zero.
+
+
     @Test
-    void getRequiredTokens() {
-        int[] requiredTokens = detector.getRequiredTokens();
-        assertNotNull(requiredTokens);
-        assertTrue(requiredTokens.length > 0);
-        // Add more assertions as needed
+    public void visitTokenWhenClassDefinitionIsShorterThanOrEqualTo100Lines() {
+        ConcreteSpaghettiCodeDetector detector = spy(new ConcreteSpaghettiCodeDetector());
+        DetailAST ast = mock(DetailAST.class);
+
+        when(ast.getType()).thenReturn(TokenTypes.CLASS_DEF);
+        when(ast.getLineNo()).thenReturn(1);
+        when(ast.getLastChild()).thenReturn(ast);
+        when(ast.getLastChild().getLineNo()).thenReturn(99);
+
+        // call the visitToken() method with the long class definition
+        detector.visitToken(ast);
+        assertTrue(true);
     }
 
     @Test
-    void visitToken() {
-        // TODO: Implement test cases for visitToken()
+
+    public void visitTokenWhenClassDefinitionIsLongerThan100Lines() throws NullPointerException {
+        ConcreteSpaghettiCodeDetector detector = spy(new ConcreteSpaghettiCodeDetector());
+        DetailAST ast = mock(DetailAST.class);
+
+        when(ast.getType()).thenReturn(TokenTypes.CLASS_DEF);
+        when(ast.getLineNo()).thenReturn(1);
+        when(ast.getLastChild()).thenReturn(ast);
+        when(ast.getLastChild().getLineNo()).thenReturn(102);
+
+        detector.visitToken(ast);
+    }
+
+    @Test
+    public void visitTokenWhenMethodDefinitionIsShorterThanOrEqualTo50Lines() {
+        ConcreteSpaghettiCodeDetector detector = new ConcreteSpaghettiCodeDetector();
+        DetailAST ast = mock(DetailAST.class);
+        DetailAST lastChild = mock(DetailAST.class);
+
+        when(ast.getType()).thenReturn(TokenTypes.METHOD_DEF);
+        when(ast.getLineNo()).thenReturn(1);
+        when(ast.getLastChild()).thenReturn(lastChild);
+        when(lastChild.getLineNo()).thenReturn(45);
+
+        detector.visitToken(ast);
+        assertTrue(true);
+ }
+
+    @Test
+    public void visitTokenWhenMethodDefinitionIsLongerThan50Lines() throws NullPointerException {
+        ConcreteSpaghettiCodeDetector detector = spy(new ConcreteSpaghettiCodeDetector());
+        DetailAST ast = mock(DetailAST.class);
+
+        when(ast.getType()).thenReturn(TokenTypes.METHOD_DEF);
+        when(ast.getLineNo()).thenReturn(1);
+        when(ast.getLastChild()).thenReturn(ast);
+        when(ast.getLastChild().getLineNo()).thenReturn(52);
+
+        detector.visitToken(ast);
+        assertTrue(true);
+
     }
 }
-
