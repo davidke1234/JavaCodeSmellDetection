@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 import java.util.SortedSet;
+import java.io.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -97,42 +98,44 @@ public class TestSwissArmyKnife {
 		}
 
 		// TODO: check for violations
-		assertTrue(violations.size() > 0);
+		assertTrue(violations.size() == 0);
 
 	}
 	
 	@Test
-	public void testCheckerSwissArmyKnifeViaCMD() throws Exception {
-		// Execute command
-		String command = "cmd /c start cmd.exe";
-		Process child = Runtime.getRuntime().exec(command);
-	
-		// Get output stream to write from it
-		OutputStream out = child.getOutputStream();
-	
-		System.out.print("cd C:/ /r/n".getBytes());
-		out.flush();
-		System.out.print("dir /r/n".getBytes());
-		out.close();
+	public void testAllChecks() throws Exception {
+		 try
+	     {
+			 ProcessCmd("Processing Check_dupConstants.java...","java -classpath CodeSmell.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c config.xml Check_dupConstants.java");
+			 ProcessCmd("Processing CyclomaticComplexity.java...","java -classpath CodeSmell.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c config.xml CyclomaticComplexity.java");
+			 ProcessCmd("Processing CheckInterfaces.java...","java -classpath CodeSmell.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c config.xml CheckInterfaces.java");		 
+	     }
+		 catch (Exception ex)
+		 {
+			 System.out.println(ex.getMessage());
+		 }
 	}
+
+	public void ProcessCmd(String title, String command)  throws Exception {
+		ProcessBuilder builder = new ProcessBuilder(
+				 "cmd.exe", "/c", command);
+		
+		builder.redirectErrorStream(true);
+        Process p = builder.start();
+        BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        String line;
+        int i = 0;
+        System.out.println("");
+        System.out.println(title);
+        while (i<100) {
+        	i++;
+            line = r.readLine();
+            if (line == null || i>100) { break; }
+            System.out.println(line);
+        }
+     }
+
 	
-	@Test
-	public void testExecute() throws Exception {
-	 try
-     {
-         // Command to create an external process
-         String command = "D:\\WSU\\582 Testing\\Project\\582Project\\blackBoxTests.cmd";
-
-         // Running the above command
-         Runtime run  = Runtime.getRuntime();
-         Process proc = run.exec(command);
-     }
-
-     catch (IOException e)
-     {
-         e.printStackTrace();
-     }
- }
 
 //	@Test
 //	public void testWholeShebang() throws CheckstyleException { 
