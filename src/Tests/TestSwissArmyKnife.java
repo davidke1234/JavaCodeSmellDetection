@@ -36,7 +36,6 @@ public class TestSwissArmyKnife {
 		
 	@Test
 	public void testChecker() throws Exception {
-		//String command = "java -jar checkstyle-10.8.0-all.jar -t CyclomaticComplexity.java";
 		
 		DetailAstImpl detailAST = new DetailAstImpl();
 		String ast = "";
@@ -48,10 +47,9 @@ public class TestSwissArmyKnife {
 	        //System.out.println(line);
 	        ast+=line;
 	      }
-	      myReader.close();	
+	    myReader.close();	
 					
 		detailAST.setText(ast);  
-		//System.out.print("result: " + detailAST);
 		
 		final SwissArmyKnifeCheck checker = new SwissArmyKnifeCheck();
 		checker.visitToken(detailAST);
@@ -169,6 +167,7 @@ public class TestSwissArmyKnife {
             if (line == null || i>5000) { break; }
             result += line;
         } 
+        r.close();
         return result;
 	}
 
@@ -193,6 +192,8 @@ public class TestSwissArmyKnife {
             //System.out.println(line);
             results.add(line);
         }
+        
+        r.close();
         
         return results;
      }

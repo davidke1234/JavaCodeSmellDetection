@@ -97,6 +97,7 @@ public class TestDuplicateCode {
             results.add(line);
         }
         
+        r.close();
         return results;
      }
 }
