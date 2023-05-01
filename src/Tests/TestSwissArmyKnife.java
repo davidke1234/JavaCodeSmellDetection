@@ -60,17 +60,17 @@ public class TestSwissArmyKnife {
       		
 	@Test
 	public void testCheck_CyclomaticComplexity() throws Exception {
-		ArrayList<String> results = new ArrayList<String>(); 
+		ArrayList<String> violations = new ArrayList<String>(); 
 		try
 	     {
-			results = ProcessCmd("Processing CyclomaticComplexity.java...","java -classpath SwissArmyKnifeCheck.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c configSwissArmy.xml CyclomaticComplexity.java");
+			violations = ProcessCmd("Processing CyclomaticComplexity.java...","java -classpath SwissArmyKnifeCheck.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c configSwissArmy.xml CyclomaticComplexity.java");
 	     }
 		 catch (Exception ex)
 		 {
 			 System.out.println(ex.getMessage());
 		 }
 		
-		assertTrue(results.size() >5 );
+		assertTrue(violations.size() >5 );
 	}
 	
 	@Test

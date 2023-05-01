@@ -60,10 +60,10 @@ public class TestDuplicateCode {
 	
 	@Test
 	public void testAllChecks() throws Exception {
-		ArrayList<String> results = new ArrayList<String>(); 
+		ArrayList<String> violations = new ArrayList<String>(); 
 		 try
 	     {
-			 results = ProcessCmd("Processing Check_dupConstants.java...","java -classpath DuplicateCodeCheck.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c configDuplicateCode.xml Check_dupConstants.java");
+			 violations = ProcessCmd("Processing Check_dupConstants.java...","java -classpath DuplicateCodeCheck.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c configDuplicateCode.xml Check_dupConstants.java");
 			 //ProcessCmd("Processing CyclomaticComplexity.java...","java -classpath DuplicateCodeCheck.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c configDuplicateCode.xml CyclomaticComplexity.java");
 			 //ProcessCmd("Processing CheckInterfaces.java...","java -classpath DuplicateCodeCheck.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c configDuplicateCode.xml CheckInterfaces.java");		 
 	     }
@@ -72,7 +72,7 @@ public class TestDuplicateCode {
 			 System.out.println(ex.getMessage());
 		 }
 		 
-		 assertTrue(results.size() >5 );
+		 assertTrue(violations.size() >5 );
 	}
 	
 	public ArrayList<String> ProcessCmd(String title, String command)  throws Exception {
