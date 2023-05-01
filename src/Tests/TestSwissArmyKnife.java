@@ -1,6 +1,7 @@
 package Tests;
 
 import static org.junit.Assert.*;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -60,16 +61,33 @@ public class TestSwissArmyKnife {
 
       		
 	@Test
-	public void testAllChecks() throws Exception {
-		 try
+	public void testCheck_CyclomaticComplexity() throws Exception {
+		ArrayList<String> results = new ArrayList<String>(); 
+		try
 	     {
-			 ProcessCmd("Processing CyclomaticComplexity.java...","java -classpath SwissArmyKnifeCheck.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c configSwissArmy.xml CyclomaticComplexity.java");
-			 ProcessCmd("Processing CheckInterfaces.java...","java -classpath SwissArmyKnifeCheck.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c configSwissArmy.xml CheckInterfaces.java");		 
+			results = ProcessCmd("Processing CyclomaticComplexity.java...","java -classpath SwissArmyKnifeCheck.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c configSwissArmy.xml CyclomaticComplexity.java");
 	     }
 		 catch (Exception ex)
 		 {
 			 System.out.println(ex.getMessage());
 		 }
+		
+		assertTrue(results.size() >5 );
+	}
+	
+	@Test
+	public void testCheck_Interfaces() throws Exception {
+		ArrayList<String> results = new ArrayList<String>(); 
+		try
+	     {
+			results = ProcessCmd("Processing CheckInterfaces.java...","java -classpath SwissArmyKnifeCheck.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c configSwissArmy.xml CheckInterfaces.java");		 
+	     }
+		 catch (Exception ex)
+		 {
+			 System.out.println(ex.getMessage());
+		 }
+		
+		assertTrue(results.size()>2);
 	}
 	
 	@Test
@@ -154,7 +172,9 @@ public class TestSwissArmyKnife {
         return result;
 	}
 
-	public void ProcessCmd(String title, String command)  throws Exception {
+	public ArrayList<String> ProcessCmd(String title, String command)  throws Exception {
+		ArrayList<String> results = new ArrayList<String>();
+		
 		ProcessBuilder builder = new ProcessBuilder(
 				 "cmd.exe", "/c", command);
 		
@@ -163,14 +183,18 @@ public class TestSwissArmyKnife {
         BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
         String line;
         int i = 0;
-        System.out.println("");
-        System.out.println(title);
+        //System.out.println("");
+        results.add(title);
+        
         while (i<100) {
         	i++;
             line = r.readLine();
             if (line == null || i>100) { break; }
-            System.out.println(line);
+            //System.out.println(line);
+            results.add(line);
         }
+        
+        return results;
      }
 
 	// Integration Tests

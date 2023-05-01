@@ -60,19 +60,24 @@ public class TestDuplicateCode {
 	
 	@Test
 	public void testAllChecks() throws Exception {
+		ArrayList<String> results = new ArrayList<String>(); 
 		 try
 	     {
-			 ProcessCmd("Processing Check_dupConstants.java...","java -classpath DuplicateCodeCheck.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c configDuplicateCode.xml Check_dupConstants.java");
-			 ProcessCmd("Processing CyclomaticComplexity.java...","java -classpath DuplicateCodeCheck.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c configDuplicateCode.xml CyclomaticComplexity.java");
-			 ProcessCmd("Processing CheckInterfaces.java...","java -classpath DuplicateCodeCheck.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c configDuplicateCode.xml CheckInterfaces.java");		 
+			 results = ProcessCmd("Processing Check_dupConstants.java...","java -classpath DuplicateCodeCheck.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c configDuplicateCode.xml Check_dupConstants.java");
+			 //ProcessCmd("Processing CyclomaticComplexity.java...","java -classpath DuplicateCodeCheck.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c configDuplicateCode.xml CyclomaticComplexity.java");
+			 //ProcessCmd("Processing CheckInterfaces.java...","java -classpath DuplicateCodeCheck.jar;checkstyle-10.8.0-all.jar com.puppycrawl.tools.checkstyle.Main -c configDuplicateCode.xml CheckInterfaces.java");		 
 	     }
 		 catch (Exception ex)
 		 {
 			 System.out.println(ex.getMessage());
 		 }
+		 
+		 assertTrue(results.size() >5 );
 	}
 	
-	public void ProcessCmd(String title, String command)  throws Exception {
+	public ArrayList<String> ProcessCmd(String title, String command)  throws Exception {
+		ArrayList<String> results = new ArrayList<String>();
+		
 		ProcessBuilder builder = new ProcessBuilder(
 				 "cmd.exe", "/c", command);
 		
@@ -81,13 +86,17 @@ public class TestDuplicateCode {
         BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
         String line;
         int i = 0;
-        System.out.println("");
-        System.out.println(title);
+        //System.out.println("");
+        results.add(title);
+        
         while (i<100) {
         	i++;
             line = r.readLine();
             if (line == null || i>100) { break; }
-            System.out.println(line);
+            //System.out.println(line);
+            results.add(line);
         }
+        
+        return results;
      }
 }
