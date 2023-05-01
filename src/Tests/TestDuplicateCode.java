@@ -3,11 +3,17 @@ package Tests;
 import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.SortedSet;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Violation;
+
+import CodeSmell.DuplicateCodeCheck;
 import CodeSmell.DuplicateCodeCheck;
 
 import java.io.BufferedReader;
@@ -35,6 +41,30 @@ public class TestDuplicateCode {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+    public void testVisitToken_ReturnsNoDuplicateCode() {
+      final DuplicateCodeCheck checker = new DuplicateCodeCheck();
+      
+      DetailAstImpl rootAst = new DetailAstImpl();
+      
+      DetailAstImpl newType1 = new DetailAstImpl();
+      newType1.setType(TokenTypes.CLASS_DEF);
+      rootAst.addChild(newType1);
+      
+      DetailAstImpl newType2 = new DetailAstImpl();
+      newType2.setType(TokenTypes.OBJBLOCK);
+      rootAst.addChild(newType2);
+           
+      DetailAstImpl newType4 = new DetailAstImpl();
+      newType4.setType(TokenTypes.METHOD_DEF);
+      rootAst.addChild(newType4);
+      
+      checker.visitToken(rootAst);
+      SortedSet<Violation> violation = checker.getViolations();
+      
+      assertTrue(violation.size() == 0);
+    }
 
 	@Test
 	public void testHasDupes_ReturnsTrue() {
@@ -54,6 +84,14 @@ public class TestDuplicateCode {
 		DuplicateCodeCheck dupes = new DuplicateCodeCheck();
 		ArrayList<String> lines = new ArrayList<String>();
 		lines.add("String x = Hello World");
+		boolean result = dupes.hasDupes(lines);
+		assertFalse(result);
+	}
+	
+	@Test
+	public void testHasDupes_ReturnFalseWithNoCode() {
+		DuplicateCodeCheck dupes = new DuplicateCodeCheck();
+		ArrayList<String> lines = new ArrayList<String>();
 		boolean result = dupes.hasDupes(lines);
 		assertFalse(result);
 	}
